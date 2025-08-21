@@ -1,0 +1,73 @@
+/*
+    SELECTOR UNIVERSAL
+     - los selectores universales o *
+     permiten acceder a todo el documento, sin ningun
+     tipo de restriccion, no es recomentado usarlo
+ */
+
+/** {
+    color: blue;
+}*/
+
+/*
+    SELECTORES SIMPLES
+     - Permite seleccionar los elementos seleccionados
+     - tambien se permiten agrupar elementos
+*/
+h1 {
+    color: blue;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: red;
+}
+
+/*
+    tambien podemos seleccionar todos los elementos hijos
+    de una etiqueta, por ejemplo en el header tenemos un
+    parrafo, pero queremos solamente en la etiqueta main
+    esto se llama selector descendiente
+    la diferencia es que en este caso, no se aplica coma
+    asi se respeta la jerarquia
+    incluso, podemos darle mas profundidad
+*/
+
+main p {
+    font-size: 30px;
+    color: blue;
+}
+
+/*
+    SELECTORES CLASES
+    En css, se trabaja con clases en vez de id en html
+    <a href="#" class="header">Inicio</a> -> forma correcta de anadir estilos
+    <a href="#" class="header">Inicio</a> -> no se usa id, id va relacionado con JS
+    la razon es porque clases puedes repetirlo cuantas veces quieras, id no, no
+    puede reopetirse
+*/
+
+.header {
+    color: darkblue;
+    font-size: 25px;
+}
+
+.menuNavegacion {
+    background: beige;
+}
+
+/*
+    SELECTOR DE HIJOS >
+    En este ejemplo tenemos en el menu de vanegacion o <nav> dos clases
+    v y #submenu, esto explicita que hay un menu principal y
+    dos sub menu, la gracia de este selector es que si yo selecciono la clase
+    #menuNavegacion puedo seleccionar a todos los hijos de este container, sin
+    modificar a la clase #submenu
+
+    podriamos seleccionar en este caso distintos enlaces pero de la clase #submenu
+    de esta forma, solo podemos agrandar los enlaces HIJOS de #subMenu
+*/
+
+.subMenu > a {
+    font-size: 20px;
+}
+
