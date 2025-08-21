@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+</head>
+<body>
+    <!-- FORMULARIOS -->
+    <h2>Formularios</h2>
+    <br>
+
+    <p>
+        Los formularios permiten enviar un correo o un mensaje al administrador del sitio<br>
+        del sitio, existen varias etiquetas y atributos para usarlos con formularios <br>
+        <ol>
+            <li>para agregar campos, se usa la etiqueta <mark>input</mark></li>
+            <li>para agregar un texto a ese campo, se usa <mark>label</mark></li>
+            <li>con el atributo <mark>for</mark> se asocia el label con input mediante el <mark>id</mark></li>
+            <li>para asociar el input con el for, se debe sincronizar mediante el id</li>
+        </ol>
+        <!-- Ejemplo -->
+        <label for="text">Ingrese texto</label>
+        <input type="text" id="texto">
+        <br>
+
+        <ol start="5">
+            <li>Para agregar un contexto de que agregar, usamos placeholder</li>
+        </ol>
+        <!-- Ejemplo -->
+        <label for="texto2">Ingrese su nombre</label>
+        <input type="tex" id="texto2" placeholder="Juan Perez...">
+        <br>
+
+        <ol start="6">
+            <li>Por otro lado, el atributo <mark>maxlength</mark> permite fijar un maximo de caracteres</li>
+        </ol>
+        <!-- Ejemplo -->
+        <label for="texto3"> ingrese su RUT</label>
+        <input type="text" id="texto3" placeholder="maximo 10 letras" maxlength="10">
+        <br>
+        
+        <ol start="7">
+            <li>para agregar una descripcion o mas texto, se usa el marcador <mark>textarea</mark></li>
+            <li>
+                con el atributo <mark>name</mark> le indicamos mediante clave-valor <br>
+                que dentro del nombre name, vendra el contenido del mensaje</li>
+        </ol>
+        <!-- Ejemplo -->
+        <label for="textarea1">debe ingresar su mensaje</label>
+        <textarea name="" id="textarea1" maxlength="300" placeholder="me gustaria corizar..."></textarea>
+        <br>
+
+        <ol start="9">
+            <li>tambien podemos seleccionar cosas con la etiqueta <mark>select</mark></li>
+            <li>con la etiqueta <mark>option</mark> podemos agregar diferentes opciones</li>
+        </ol>
+        <!-- Ejemplo -->
+        <label for="pais1">Seleccione su pais</label>
+        <select name="pais" id="pais1">
+            <option value="chile">Chile</option>
+            <option value="mexico">Mexico</option>
+            <option value="pero">Peru</option>
+        </select>
+        <br>
+
+        <ol start="11">
+            <li>Tambien podemos seleccionar diferentes opciones mediante <mark>radio button</mark></li>
+            <li>con radio podemos seleccionar simplemente pinchando una opcion</li>
+            <li>
+                para que pueda el servidor backend sepa que dato se esta enviando, debe usarse <br>
+                el atributo <mark>value</mark> asi llega mediante clave-valor al server
+            </li>
+            <li>
+                para que de un grupo de mas opciones podamos seleccionar solo uno, debemos <br>
+                usar el atrinuto <mark>name</mark> asi se podra seleccionar solo uno de un grupo
+            </li>
+        </ol>
+        <!-- Ejemplo -->
+        <input type="radio" id="espanol" value="espanol" name="idioma"><label for="espanol">Espanol</label>
+        <input type="radio" id="ingles" value="ingles" name="idioma"><label for="ingles">Ingles</label>
+        <br>
+
+        <ol start="15">
+            <li>
+                ademas, para enviar datos true o false, podemos usar etiquetas <br>
+                como <mark>checkbox</mark> 
+            </li>
+        </ol>
+        <!-- Ejemplo -->
+        <input type="checkbox" name="terminos" id="terminos"><label for="terminos">
+            Acepto los terminos y condiciones
+        </label>
+        <br>
+
+        <ol start="16">
+            <li>
+                por ultimo, debemos tener un boton para enviar el formulario <br>
+                con el atributo de tipo <mark>submit</mark>
+            </li>
+            <li>si no ponen nada, automaticamente va a rellenar con <strong>Enviar consulta</strong></li>
+            <li>Para agregar un nombre al boton, usamos el atributo <mark>value</mark></li>
+        </ol>
+        <!-- Ejemplo -->
+        <h3>ejemplo de boton sin value</h3>
+        <input type="submit">
+        <h3>ejemplo de boton <strong>con value</strong></h3>
+        <input type="submit" value="Enviar el correo">
+
+        <ol start="19">
+            <li>para que el formulario funcione, debe encerrarse en las etiquetas <mark>form</mark></li>
+            <li>los atributos mas utilizados en el form son</li>
+            <li><mark>action</mark> se usa para especificar a que archivo se envia los datos para ser procesados</li>
+            <li><mark>name</mark> donde va el nombre del formulario</li>
+            <li><mark>id</mark> me permite con javascript acceder al formulario</li>
+            <li><mark>method</mark> nos permite seleccionar el tipo de metodo, puede ser
+                <ul>
+                    <li>POST</li>
+                    <li>GET</li>
+                </ul>
+            </li>
+        </ol>
+    </p>
+</body>
+</html>
+<!--  -->

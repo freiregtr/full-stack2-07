@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datalist</title>
+</head>
+<body>
+    
+    <!-- DATALIST -->
+    <h2>Datalist</h2>
+    <br>
+
+    <p>
+        Datalist es una funcionalidad nueva de HTML5 que permite a los usuarios <br>
+        poder crear listas de sugerencias de forma nativa y al seleccionar permite <br>
+        usar un custom value
+
+        <ol>
+            <li><mark>datalist</mark> permite cargar una lista de sugerencias pero de forma <strong>nativa</strong></li>
+            <li>con la etiqueta <mark>datalist</mark> se crea la lista se sugerencias</li>
+            <li>el input y el datalist se enlazan mediante el atributo <mark>list</mark></li>
+            <li>en el datalist, el id debe ser <strong>el mismo</strong> que en el list para funcionar</li>
+        </ol>
+    </p>
+    <!-- Ejemplo -->
+    <form action="">
+        <label for="pais">Seleccione un pais</label> <br>
+        <input type="text" name="paises" id="pais" list="paises">
+
+        <datalist id="paises">
+            <option value="Chile"></option>
+            <option value="Argentina"></option>
+            <option value="Peru"></option>
+            <option value="Bolivia"></option>
+            <option value="Paraguay"></option>
+            <option value="Uruguay"></option>
+        </datalist>
+    </form>
+
+</body>
+</html>

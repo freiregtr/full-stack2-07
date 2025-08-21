@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enlaces</title>
+</head>
+<body>
+
+    <!-- ENLACES -->
+    <h2>Enlaces</h2>
+    <br>
+    <p>
+        Los enlaces permiten comunicar el archivo actual con otro archivo del proyecto o por ejemplo, con enlaces externos.
+        la etiqueta se llama <strong>a</strong> y hace referencia a ancor, ancla en ingles.
+    </p>
+    <a href="https://www.google.cl">esta es la pagina de google</a>
+    <br>
+
+    <p>
+        hay varios atributos. 
+        <br>
+        <mark>href</mark> permite definir cual es el enlace que se quiere direccionar
+        <br>
+        <mark>tittle</mark> nos permite agregar contexto cuando el usuario pase el raton por sobre el enlace
+    </p>
+    <h2><a href="https://www.google.cl" title="este es un contexto de donde se va a enviar al usuario">este es un hipervinculo a google</a></h2>
+    <br>
+
+    <p>
+        tambien se puede configurar la forma en la que podemos enviar al usuario a los distintos enlaces
+        <br>
+        con el atributo <mark>target</mark> puedes seleccionar la forma en la que el usuario va a dejar el sitio
+        <br>
+        usualmente con <mark>_blank</mark> el usuario va a abrir una nueva pestana
+    </p>
+    <h2><a href="https://www.google.cl" target="_blank">este sitio va a abrir google en una pestana nueva</a></h2>
+    <br>
+
+    <p>
+        aunque no es una practica recomendada ya que estamos incrustando el correo y estamos haciendo publica la direccion
+        <br>
+        podemos invocar al cliente de correo del sistema operativo con <mark>mailto</mark>
+    </p>
+    <h3><a href="mailto:correo@123.com">este enlace va a abrir el cliente de correo por defecto que tenga el sistema operativo</a></h3>
+    <br>
+
+    <p>
+        tambien podemos enviar enlaces a rutas relativas dentro del mismo proyecto.
+        <br>
+        por ejemplo podemos enviar a los usuarios al archivo 03-citas-texto.html
+        <br>
+        la unica diferencia, es que ahora como es dentro del proyecto o del sitio, dejamos el target <mark>_parent</mark>
+    </p>
+    <h3><a href="./03-citas-texto.html" target="_parent" title="va a enviar a una ruta relativa dentro de nuestro proyecto">enviar a citas de texto</a></h3>
+    
+</body>
+</html>

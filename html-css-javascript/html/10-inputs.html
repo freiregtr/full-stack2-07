@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inputs</title>
+</head>
+<body>
+    
+    <!-- INPUTS -->
+    <h2>Inputs</h2>
+    <br>
+
+    <h3>Email</h3>
+    <ol>
+        <li>
+            los tipos de inputs nor permiten <strong>validar</strong> la informacion que estamos <br>
+            agregando en cada tipo de campo, ya sea correo, numeros, etc
+        </li>
+        <li>
+            el primer tipo de input se llama <mark>email</mark> y verifica del lado del front end <br>
+            si la estructura de correo es valida
+        </li>
+    </ol>
+    <!-- Ejemplo -->
+    <form action="">
+        <label for="email">Ingrese su email</label> <br>
+        <input type="email" name="email" id="email" placeholder="correo@correo.com"> <br>
+        <input type="submit" value="Enviar correo">
+    </form>
+    <br>
+
+    <h3>Password</h3>
+    <ol start="3">
+        <li>tambien podemos usar un tipo de input llamado <mark>password</mark></li>
+        <li>la gracia que tiene es que todos los datos ingresados estaran ocultos</li>
+        <li>nunca se debe enviar contrasenas mediante <strong>method="GET"</strong> en el formulario</li>
+    </ol>
+    <!-- Ejemplo -->
+    <form action="" method="POST">
+        <label for="contrasena">Ingrese su contrasena</label> <br>
+        <input type="password" name="contrasena" id="contrasena"> <br>
+        <input type="submit" value="Enviar contrasena">
+    </form>
+    <br>
+
+    <h3>Number</h3>
+    <ol start="6">
+        <li>para poder enviar numeros, podemos usar el input de tipo <mark>number</mark></li>
+        <li>podemos fijar minimos en el input con el atributo <mark>min</mark></li>
+        <li>podemos fijar maximos en el input con el atributo <mark>max</mark></li>
+    </ol>
+    <!-- Ejemplo -->
+    <form action="">
+        <label for="telefono">Ingrese su salario</label> <br>
+        <input type="number" min="500000" max="30000000" name="salario" id="salario"> <br>
+        <input type="submit" value="Enviar salario">
+    </form>
+    <br>
+    
+    <h3>File</h3>
+    <ol start="9">
+        <li>Podemos usar el input de tipo <mark>file</mark> para poder enviar archivos</li>
+        <li>
+            podemos definir que tipo de archivo necesitamos, con el atributo <mark>accept</mark>
+            y permitir por ejemplo solo archivos jpg o png <strong>accept=".jpg,.png"</strong>
+        </li>
+        <li>por otro lado si se necesita multiples archivos, se agrega la etiqueta <mark>multiple</mark></li>
+    </ol>
+    <!-- Ejemplo -->
+    <form action="">
+        <label for="archivo">Seleccione un o unos archivos</label> <br>
+        <input type="file" name="" accept=".jpg,.png" id="archivo" multiple> <br>
+        <input type="submit" value="Enviar archivos">
+    </form>
+    <br>
+    
+    <h3>Rango</h3>
+    <ol start="12">
+        <li>podemos usar un rango de como tipo de input, donde por ejemplo, podemos usarlo como rango de precios</li>
+        <li>el tipo de input se llama <mark>range</mark></li>
+        <li>podemos setear un <mark>min, max y un value pre configurado</mark></li>
+    </ol>
+    <!-- Ejemplo -->
+    <form action="">
+        <label for="rango">Seleccione un rango de precios</label> <br>
+        <input type="range" min="1" max="200" name="rango" id="rango"> <br>
+        <input type="submit" value="Enviar rango">
+    </form>
+    <br>
+
+    <h3>Colores</h3>
+    <ol start="15">
+        <li>Podemos seleccionar colores mediante el tipo de input <mark>color</mark></li>
+    </ol>
+    <!-- Ejemplo -->
+    <form action="">
+        <label for="tipoColor">Seleccione un color</label> <br>
+        <input type="color" name="tipoColor" id="tipoColor"> <br>
+        <input type="submit" value="Enviar tipo de color">
+    </form>
+    <br>
+
+    <h3>Fecha y hora</h3>
+    <ol start="16">
+        <li>tambien podemos seleccionar fechas con el input de tipo <mark>date</mark></li>
+        <li>con <mark>value</mark> podemos definir una fecha custom</li>
+        <li>podemos al igual que numbers setear un <mark>min</mark> y <mark>max</mark></li>
+        <li>es importante respetar el orden americano de fechas, primero AAAA-MM-DD</li>
+    </ol>
+    <!-- Ejemplo -->
+    <form action="">
+        <label for="fecha">Seleccione la Fecha</label>
+        <input type="date" name="fecha" id="fecha" value="2025-08-10" min="2025-01-01" max="2025-12-31"> <br>
+        <input type="submit" value="Enviar Fecha">
+    </form>
+    <ol start="20">
+        <li>tambien no solo podemos seleccionar fecha, si no tambien hora con tipo de input<mark>datetime-local</mark></li>
+    </ol>
+    <!-- Ejemplo -->
+    <form action="">
+        <label for="fechaHora">Seleccione la fecha y hora</label> <br>
+        <input type="datetime-local" name="fechaHora" id="fechaHora"> <br>
+        <input type="submit" value="Enviar fecha y hora">
+    </form>
+    <br>
+
+    <ol start="21">
+        <li>tambien podemos seleccionar solo la hora con el input type <mark>time</mark></li>
+    </ol>
+    <!-- Ejemplo -->
+    <form action="">
+        <label for="soloHora"></label> <br>
+        <input type="time" name="soloHora" id="soloHora"> <br>
+        <input type="submit" value="Enviar solo la hora">
+    </form>
+    <br>
+
+    <h3>Hideen</h3>
+    <ol start="22">
+        <li>tambien podemos dejar inputs ocultos con hidden con el input type <mark>hidden</mark></li>
+        <li>esto es util cuando queremos procesar datos pero no queremos que el usuario interactue con el</li>
+    </ol>
+    <!-- Ejemplo -->
+    <form action="">
+        <label for="escondido">aca no hay datos</label> <br>
+        <input type="hidden" name="escondido" id="escondido" value="true"> <br>
+        <input type="submit" value="escondido">
+    </form>
+    <br>
+
+    <h3>Reset y boton enviar</h3>
+    <ol start="24">
+        <li>
+            dentro de los controles de html y formularios podemos reiniciar un formulario con el boton <br>
+            <mark>reset</mark> al mismo tiempo de tener mas de una forma de enviar el formulario <br>
+            con la etiqueta <mark>button</mark>
+        </li>
+    </ol>
+    <!-- Ejemplo -->
+    <form action="" method="POST">
+        <h3>Formulario de contacto</h3>
+        <label for="nombre1">Ingrese un nombre</label> <br>
+        <input type="text" name="nombre1" id="nombre1" placeholder="ingrese su nombre..."> <br>
+        <label for="email1">Ingrese su Email</label> <br>
+        <input type="email" name="email1" id="email1" placeholder="ingrese su correo..."> <br>
+        <label for="password1">Ingrese su password</label> <br>
+        <input type="password" name="password1" id="password1"> <br>
+
+        <br>
+        <input type="reset" value="Restear controles">
+        <!-- otra forma diferente de crear un boton submit -->
+        <button type="submit"> enviar datos</button>
+    </form>
+
+
+</body>
+</html>

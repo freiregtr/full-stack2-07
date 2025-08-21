@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas</title>
+</head>
+<body>
+
+    <!-- TABLAS -->
+    <h2>Tablas</h2>
+    <br>
+    <p>
+        las tablas nos permiten ordenar de forma estructurada datos en filas y columnas <br>
+        este es un ejemplo de una tabla clasica con las siguientes etiquetas <br>
+        <mark>tr</mark> significa table row y representa una fila, las filas son horizontales <br>
+        <mark>td</mark> significa table data crea celdas dentro de las columnas, las columnas son verticales
+    </p>
+    <table>
+        <tr>
+            <td>Nombre</td>
+            <td>Direccion</td>
+            <td>Telefono</td>
+        </tr>
+        <tr>
+            <td>Juan</td>
+            <td>Alamiro 10800</td>
+            <td>945871247</td>
+        </tr>
+        <tr>
+            <td>Javier</td>
+            <td>Las rejas 5001</td>
+            <td>9 6548 5214</td>
+        </tr>
+    </table>
+    <br>
+
+    <p>
+        Esta es una forma anticuada de hacer tablas, ya que como les explicaba previamente, existen etiquetas que ayudan a la semantica <br>
+        la etiqueta <mark>thead</mark> indica la cabecera de la tabla <br>
+        dentro de thead, se puede usar en vez de td, <mark>th</mark> ya que representa el indice de la tabla, de hecho, lo resalta en negrita <br>
+        la etiqueta <mark>tbody</mark> indica el contenido de la tabla acorde al indice o en este caso, thead <br>
+        por ultimo y no siempre usado pero si existe, la etiqueta <mark>tfoot</mark> indica el pie de una tabla
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Juan</td>
+                <td>Alamiro 10800</td>
+                <td>945871247</td>
+            </tr>
+            <tr>
+                <td>Javier</td>
+                <td>Las rejas 5001</td>
+                <td>9 6548 5214</td>
+            </tr>
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+    
+</body>
+</html>
