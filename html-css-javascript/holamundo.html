@@ -1,0 +1,343 @@
+<!-- html es un lenguaje de marcado, mas no un lenguaje de programacion -->
+<!-- con html:5 y tabulacion ya puedes crear una estructura basica -->
+<!--  -->
+
+<!DOCTYPE html> <!-- esta etiqueta le indica al navegador con que tipo de archivo vamos a trabajar, en este caso, html5 -->
+<!-- el atributo lang permite especificar el idioma del archivo, en-US, es, es-CL -->
+<html lang="en">
+<head>
+    <!-- en esta seccion se llama encabezado van los elementos que no se veran en el navegador, solo carga archivos, metadatos, etc -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- tittle permite decirle al navegador como se llama este documento -->
+    <title>Document</title>
+</head>
+<body>
+    <!-- en esta seccion va a ir todo lo que va a poder verse en la web -->
+    <!-- con los encabezados podemos crear titulares y de diferentes formatos, desde h1 hasta h6 -->
+    
+    <h1>este es un texto h1</h1>
+    <h2>este es un texto h2</h2>
+    <!-- truco, con F2 se puede cambiar la etiqueta manual -->
+    <h3>este es una etiqueta h3</h3>
+    <!-- semantica: hay algunas etiquetas que tienen mas importancia semantica que otras, esto es debido a que buscadores tienden a darle mas importancia al momento de indexar el sitio -->
+    
+    <!-- PARRAFOS DE TEXTO -->
+    <!-- para representar un parrafo en html, se puede usar la etiqueta <p> -->
+    <p>Este es un parrafo</p>
+    <!-- con lorem, se puede crear texto a partir de nada mediante el plugin emmet -->
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi temporibus molestias magnam maxime nemo incidunt animi consequuntur odit sed, harum cumque voluptates assumenda quidem provident sit quos beatae eius exercitationem?</p>
+    
+    <!-- los parrafos son de tipo bloque, por lo que en html hay elementos de tipo linea como tipo bloque -->
+    <!-- NO SE PUEDE PONER PARRAFOS DENTRO DE PARRAFOS -->
+    <p>este es un parrafo 1</p>
+    <p>este es un parrafo 2</p>
+    <p>este es un parrafo 3</p>
+
+    <!-- para poder hacer saltos de linea, se usa la etiqueta br -->
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eveniet facere quas expedita aliquid repudiandae error, 
+    
+    <!-- este es un salto de linea -->    
+    <br>
+    
+    modi quasi esse sunt libero iste, animi dolor soluta molestiae omnis a quibusdam quae?</p>
+
+    <!-- CITAS DE TEXTO -->
+    <!-- para poder resaltar texto, se puede usar la etiqueta blockquote, esto le indica a los navegadores que esto es una cita y como es semantico, el navegador va a entender que tiene importancia de cita -->
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro doloremque optio magnam, rerum nobis ab eos! Possimus quaerat excepturi laboriosam, deleniti quam voluptatum obcaecati placeat nulla accusamus sapiente aspernatur eos corrupti. Quibusdam consequuntur, dicta obcaecati voluptatum animi minima sed nisi commodi aliquam, ut asperiores nesciunt ab pariatur totam quisquam minus sunt non aperiam ipsam rerum? Similique pariatur mollitia nobis a, officia delectus fugiat quaerat aspernatur, quae optio quasi enim. At consectetur nesciunt repellendus architecto deserunt commodi! Error sint pariatur ratione assumenda commodi doloremque ab deserunt earum repudiandae veritatis culpa asperiores praesentium laborum voluptate quis, at ipsa similique vitae accusamus quidem.</p>
+    
+    <blockquote>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic necessitatibus velit corrupti eos accusantium modi consequuntur harum repudiandae praesentium, quidem cum esse asperiores libero ad laboriosam neque veritatis dolorem placeat minima? Magnam ut iste beatae ipsa. Odit qui fugiat laudantium aliquid, corrupti debitis doloremque sequi corporis eos dolore error porro illo repellat, voluptate libero facilis nostrum quod ipsam dignissimos tenetur, alias quos ea mollitia? Blanditiis consectetur, facilis repellat amet, rem ea asperiores sint dignissimos eveniet vero voluptate ut et voluptates molestiae in ipsum libero eum officia optio assumenda sequi sed nisi! Enim rem sed at inventore amet omnis vitae placeat.</blockquote>
+
+    <!-- ahora en este ejemplo, vamos a ver una cita pero en linea, no en bloque -->
+    <p>este sitio ha sido creado por <cite>monchito</cite> </p>
+
+    <!-- ETIQUETAS DE FORMATO -->
+    <!-- para usar negritas, uso bold <b> y <strong>, cual es la diferencia? es que la primera no tiene importancia semantica, la segunda si -->
+    
+    <!-- texto sin importancia semantica -->
+    <b>texto en negritas</b>
+    <br>
+    <!-- texto con importancia semantica -->
+    <strong>texto en engritas tambien</strong>
+    <br>
+    <!-- italic -->
+    <!-- texto sin importancia semantica -->
+    <i>texto en italic</i>
+    <br>
+    <!-- texto con importancia semantica -->
+    <em>texto en italic</em>
+    <br>
+
+    <!-- Etiqueta lineal para hacer parrafos mas chiquititos -->
+    <p>este es un parrafo normal</p>
+    <small>este es mas chiquitito</small>
+    <!-- o tambien pueden estar juntos ya que es lineal, no de bloque -->
+    <p>este es un parrafo <small>mas chiquitito</small></p>
+
+    <!-- Etiqueta lineal para hacer parrafos con marcador -->
+    <p>este es un parrafo normal</p>
+    <mark>este es un texto con marcado</mark>
+    <!-- o tambien pueden estar juntos ya que es lineal, no de bloque -->
+    <p>este es un parrafo <mark>y esto esta marcado</mark></p>
+
+    <!-- Etiqueta lineal para hacer tachados -->
+    <p>este es un parrafo normal</p>
+    <del>este es un texto pero tachado</del>
+    <!-- o tambien pueden estar juntos ya que es lineal, no de bloque -->
+    <p>este es un parrafo <del>y esto esta tachado</del></p>
+
+    <!-- Etiqueta lineal para hacer insertados -->
+    <p>este es un parrafo normal</p>
+    <ins>este es un texto pero insertado</ins>
+    <!-- o tambien pueden estar juntos ya que es lineal, no de bloque -->
+    <p>este es un parrafo <ins>y esto esta insertado</ins></p>
+    
+    <!-- Etiqueta lineal para hacer subscript -->
+    <p>este es un parrafo normal</p>
+    <sub>este es un texto pero tachado</sub>
+    <!-- o tambien pueden estar juntos ya que es lineal, no de bloque -->
+    <p>este es un parrafo <sub>y esto esta tachado</sub></p>
+
+    <!-- Etiqueta lineal para hacer superscript -->
+    <p>este es un parrafo normal</p>
+    <sup>este es un texto pero tachado</sup>
+    <!-- o tambien pueden estar juntos ya que es lineal, no de bloque -->
+    <p>este es un parrafo <sup>y esto esta tachado</sup></p>
+
+    <!-- ENLACES -->
+    <!-- Permiten relacionar a otras partes del sitio o a otras paginas externas fuera del dominio -->
+    
+    <!-- para trabajar con enlaces se usa la etiqueta <a? que se llama ancor en incles, o ancla -->
+    <a>este es un enlace</a>
+    
+    <!-- asi por si solo no funciona, pero mediante href ya se puede enviar a otro sitio o archivo, con a:link -->
+    <a href="https://www.google.cl">esta es la pagina de google</a>
+    
+    <!-- con el atributo tittle podemos agregar una leyenda cuando el usuario pase el cursor sobre el enlace, importante para dar contexto al usuario -->
+    <a href="https://www.google.cl" title="La pagina de google">esta es la pagina de google</a>
+    
+    <!-- parrafos de texto tambien se pueden agregar hypervinculos -->
+    <h1><a href="https://www.google.cl" title="lo voy a mandar a la pagina de google">vaya a google.cl</a></h1>
+    
+    <!-- por defecto la pagina va a cargar en el mismo sitio que estamos, pero a veces no queremos eso, queremos que abra una pestana nueva -->
+    <a href="https://www.google.cl" target="_blank" title="La pagina de google">esta es la pagina de google</a>
+    <a href="https://www.google.cl" target="_parent" title="La pagina de google">esta es la pagina de google</a>
+    <a href="https://www.google.cl" target="_self" title="La pagina de google">esta es la pagina de google</a>
+    <a href="https://www.google.cl" target="_top" title="La pagina de google">esta es la pagina de google</a>
+
+    <!-- tambien se pueden enviar correos mediante mailto, lo que hace es que abre el cliente de correo por defecto que tenga el navegador -->
+    <a href="mailto:monchito@eljaquerdeduoc.com">mandeme su correo no mah!</a>
+    <!-- esto no se usa, ya que el correo va a estar incrustado, se puede hacer mediante javascript o php o en una imagen, pero si no, los robots van a extraer el correo -->
+    
+    <!-- rutas relativas sirven para navegar en el directorio pero dentro del contexto -->
+    <a href="archivo.html">estoy yendo a una ruta relativa</a>
+    <a href="./archivo">esta es la raiz pero con ruta relativa</a>
+    
+    <!-- rutas absolutas sirven para navegar en el directorio pero por otro lado, contiene toda la ruta del archivo -->
+    <a href="C:\Users\ramon\dev\personal\full-stack-2\html-css-javascript\archivo.html">estoy yendo a una ruta pero absoluta</a>
+
+    <!-- LISTAS -->
+    <!-- las listas de elementos son simplemente un conjunto de cosas -->
+    <!-- listas desordenadas <ul> -->
+    <h2>esto es una lista desordenada</h2>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JAVASCRIPT</li>
+    </ul>
+    <br>
+    <h2>esto es una lista ordenada</h2>
+    <ol>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JAVASCRIPT</li>
+    </ol>
+    <!-- con las listas desordenadas se van a ver puntos, pero con las listas ordenadas, solo se veran numeros, por eso lista ordenada -->
+    <!-- si se quiere empezar una lista ordenada desde el 20 por ejemplo, se usa start -->
+
+    <h3>lista ordenada pero desde el 20</h3>
+    <ol start="20">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JAVASCRIPT</li>
+    </ol>
+
+    <!-- tambien se pueden usar listas con descripociones, poco usado, pero tambien existe -->
+    <h3>esta es una lista con descripciones</h3>
+    <dl>
+        <dt>Ejemplo 1</dt>
+        <dd>este es la desfripcion del ejemplo 1</dd>
+
+        <dt>Ejemplo 2</dt>
+        <dd>este es la desfripcion del ejemplo 2</dd>
+    </dl>
+
+    <!-- tambien se pueden anidar listas -->
+    <h2>esto es una lista anidada</h2>
+    <ol>
+        <li>HTML
+            <ol>
+                <li>listas ordenadas</li>
+                <li>listas desordenadas</li>
+                <li>listas anidadas</li>
+            </ol>
+        </li>
+        <li>CSS</li>
+        <li>JAVASCRIPT</li>
+    </ol>
+
+    <!-- IMAGENES -->
+    <!-- esta etiqueta es un poco diferente, ya que no se cierra como las otras etiquetas, mas bien se cierra con / -->
+    <img />
+    <!-- con el atributo source, podemos decirle donde esta la imagen -->
+    <img src="img/foto1.jpeg" >
+    
+    <!-- para cambiar el ancho y alto, solo se debe cambiar mediante los atributos width y heith -->
+    <img src="img/foto1.jpeg" width="350" height="350">
+
+    <!-- tambien se puede agregar un titulo al pasar el cursor sobre la foto -->
+    <img src="img/foto1.jpeg" width="350" height="350" title="una foto bonita">
+
+    <!-- otro atributo muy importante es la descripcion de la foto, porque permite a personas con discapacidad poder otener informacion de la foto cuando no pueden ver -->
+    <img src="img/foto1.jpeg" width="350" height="350" alt="esta es una imagen que habla de blablabla">
+
+    <!-- TABLAS -->
+    <!-- se crean mediante la etiqueta tabla, con esto se define la estructura de una tabla -->
+    <!-- para crear una fila se crea mediante la etiqueta <tr> o table row y para la columna se usa la etiqueta td -->
+    <table>
+        <tr>
+            <td>nombre</td>
+            <td>direccion</td>
+            <td>telefono</td>
+        </tr>
+        <tr>
+            <td>juanito</td>
+            <td>gran avenida 1000</td>
+            <td>+569 6546 6545</td>
+        </tr>
+    </table>
+
+    <!-- ahora podemos darle semantica o significado al navegador, ya que es una tabla comun y corriente -->
+    <!-- con la etiqueta thead podemos decirle al navegador que esta parte de la tabla son los datos de cabecera y se agregan etiquetas como th o table headers -->
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+    <!-- y con tbody, le decimos al navegador que esta seccion es el cuerpo -->
+    <table>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th>nombre</th>
+                <th>direccion</th>
+                <th>telefono</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>juanito</td>
+                <td>gran avenida 1000</td>
+                <td>+569 6546 6545</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- como opcional puede anadirse un footer a la tabla con tfoot  -->
+    <table>
+        <thead>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+
+    <!-- FORMULARIOS -->
+    <!-- son de los elementos mas importantes de html porque permite interactiar al usuario de manera directa con el sitio -->
+    
+    <!-- la etiqueta label permite acoplarse al input mediante el id de forma automatica, dando contexto al tipo de input -->
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre">
+
+    <!-- placeholder permite crear texto de ejemplo en caso que el usuario necesite contexto -->
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" placeholder="ingrese texto aqui">
+
+    <!-- maxlength permite limitar los caracteres que se agreguen -->
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" placeholder="ingrese texto aqui" maxlength="15">
+
+    <!-- otro atributo es el textarea que permite al usuario enviar mensajes de texto mas amplio, como por ejemnplo el cuerpo de un correo -->
+    <textarea name="mensaje" id="mensaje"></textarea>
+    <!-- usualmente id hace referencia a la accion de javascript como funcionalidad y name para la info que se va a enviar mediante httpRequest -->
+    
+    <!-- tambien podemos usar select para hacer varias selecciones -->
+    <label for="pais">Pais</label>
+    <select name="pais" id="pais">
+        
+        <option value="chile">Chile</option>
+    
+    </select>
+
+    <!-- tambien se pueden agregar radiobuttons que permiten seleccionar opciones u otro tipo de opciones -->
+    <input type="radio" id="espanol" value="espanol"><label for="espanol">Espanol</label>
+    <input type="radio" id="ingles" value="ingles"><label for="ingles">Ingles</label>
+
+    <!-- para relacionar dos o mas radiobuttons en una sola opcion, se debe igualar la etiqueta name -->
+    <input type="radio" id="espanol" value="espanol" name="idioma"><label for="espanol">Espanol</label>
+    <input type="radio" id="ingles" value="ingles" name="idioma"><label for="ingles">Ingles</label>
+
+    <!-- que pasa si el usuario quiere seleccionar o no una opcion? con checkbox es posible -->
+    <input type="checkbox" id="terminos" name="terminos" id=""> <label for="terminos">
+        Aceptar los terminos y condiciones
+    </label>
+
+    <!-- por ultimo, para poder enviar un formulario, es necesario que este se envie mediante un boton -->
+    <input type="submit" value="Enviar datos">
+
+    <!-- hasta aca todo bien, pero como hemos dicho antes, debemos decirle al navegador que esto es un formulario, para eso, se debe encerrar en etiquetas como form -->
+    <form action="">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre">
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" placeholder="ingrese texto aqui">
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" placeholder="ingrese texto aqui" maxlength="15">
+
+        <textarea name="mensaje" id="mensaje"></textarea>
+        
+        <label for="pais">Pais</label>
+        <select name="pais" id="pais">
+            
+            <option value="chile">Chile</option>
+        
+        </select>
+
+        <input type="radio" id="espanol" value="espanol"><label for="espanol">Espanol</label>
+        <input type="radio" id="ingles" value="ingles"><label for="ingles">Ingles</label>
+
+        <input type="radio" id="espanol" value="espanol" name="idioma"><label for="espanol">Espanol</label>
+        <input type="radio" id="ingles" value="ingles" name="idioma"><label for="ingles">Ingles</label>
+
+        <input type="checkbox" id="terminos" name="terminos" id=""> <label for="terminos">
+            Aceptar los terminos y condiciones
+        </label>
+    </form>
+
+
+    <!--  -->
+</body>
+</html>
