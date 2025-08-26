@@ -1,0 +1,721 @@
+git config --get credential.helper
+echo "protocol=https`nhost=github.com" | git credential-manager erase
+cmdkey /delete:LegacyGeneric:target=git:https://github.com
+git config --global credential.https://github.com.useHttpPath true
+claude
+sudo apt-get install google-drive-ocamlfuse
+pwd
+cd ~
+ls -lla
+mkdir -p ~/dev/personal ~/dev/trabajo
+ls -lla
+cd dev
+ls -lla
+sudo apt update && sudo apt install -y openssh-client git
+cd .ssh
+mkdir -p ~/.ssh && chmod 700 ~/.ssh
+ssh-keygen -t ed25519 -C "ramon.freire.o@gmail.com" -f ~/.ssh/id_ed25519_personal_wsl
+ssh-keygen -t ed25519 -C "rfreire@new-sense.com" -f ~/.ssh/id_ed25519_trabajo_wsl
+nano ~/.ssh/config
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then     eval "$(ssh-agent -s)" >/dev/null; fi
+# añade todas las identidades *.wsl si aún no están cargadas
+for key in ~/.ssh/id_ed25519_*wsl; do     ssh-add -l | grep -q "$key" || ssh-add "$key" 2>/dev/null; done
+source ~/.bashrc
+nano ~/.gitconfig
+nano ~/.gitconfig-trabajo
+nano ~/.gitconfig-personal
+pwd
+cd ~
+cd .ssh
+ls -lla
+nano id_ed25519_personal_wsl
+nano id_ed25519_personal_wsl.pub 
+nano id_ed25519_trabajo_wsl.pub 
+nano ~/.gitconfig
+cd ~/dev/personal && mkdir test && cd test && git init
+cd dev
+pwd
+whoami
+git whoami
+ssh -T github-personal
+cd ~/dev/trabajo && mkdir test && cd test && git init
+ssh -T github-trabajo
+pwd
+cd ..
+rm -rf test
+pwd
+ls -lla
+cd ..
+pwd
+ls -lla
+cd personal
+rm -rf test
+ls -lla
+cd ~
+pwd
+cd DataLogger-Refactoring-system/
+git checkout feature/12-zero-data-loss-recording-pipeline 
+git fetch
+rm -rf main_window.py 
+git checkout feature/12-zero-data-loss-recording-pipeline 
+.
+pwd
+cd documentation/
+ls -lla
+nano quspin_format_doc.md 
+pwd
+cd ../..
+pwd
+cd dev
+cd trabajo
+ls -lla
+cd ..
+cd personal/
+ls -lla
+git clone git@github.ramon_personal:freiregtr/Quspin_QTFM_Gen-2_Simulator.git
+pwd
+nano ~/.bashrc
+ssh -T github.ramon_personal
+sudo ssh -T github.ramon_personal
+pwd
+cd dev
+cd personal
+git clone git@github.freire_personal:freiregtr/Quspin_QTFM_Gen-2_Simulator.git
+git clone git@github.ramon_personal:freiregtr/Quspin_QTFM_Gen-2_Simulator.git
+ssh -T github.ramon_personal
+pwd
+git clone git@github.github_personal:freiregtr/Quspin_QTFM_Gen-2_Simulator.git
+cat ~/.ssh/config
+git clone git@github.github-personal:freiregtr/Quspin_QTFM_Gen-2_Simulator.git
+git clone git@github-personal:freiregtr/Quspin_QTFM_Gen-2_Simulator.git
+cat ~/.ssh/config
+ssh -T github-personal
+ssh -T github-trabajo
+claude
+git add .
+git commit -m "Resolved issue where MAG2 view showed no data when switching from MAG1. The problem was caused by handlers being stopped and pipes being closed during view changes"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add main_window all code"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add _read_pipe_data a exception"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "clear buffer set_processing_enabled"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "modify main window and pipe handler for mag2 view"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "edit update_active_handler"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "edit setup_connections to enable change mags view"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "modify add_data_point to fix points full"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "edit dual_view_handler to adap dual handler view"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "modify main_window and pipe_reader_handler to connect dual mag"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "delete habdlers classes to init pipoe readers"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add relative imports to init in view"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add mag2 chart widget"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "delete datetime and add Qtime to use time in qchart"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "change addSecs float to int in mag, mag2 and dualmag"
+git push origin feature/13-isolate-main-pipeline-recording 
+git log --oneline -20
+git reset --hard 5f1a2d1
+git push --force origin feature/13-isolate-main-pipeline-recording 
+git reset --hard 7f9f41f
+git push --force origin feature/13-isolate-main-pipeline-recording 
+git fetch origin
+git reset --hard origin/feature/13-isolate-main-pipeline-recording
+git clean -fdx
+git add .
+git commit -m "fix issue, roll back"
+git reset --hard 0e38e8f
+git add .
+git fetch origin
+git clean -fdx
+git add .
+git commit -m "fix issue, roll back 2"
+git push --force origin feature/13-isolate-main-pipeline-recording 
+pwd
+tree -L 3 > tree.txt
+git add .
+git commit -m "copy paste ortho and gps view"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add gps like old gps view"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add ortho like old ortho view"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "create connecction manager to handle handlers in a proper way"
+git push origin feature/13-isolate-main-pipeline-recording 
+tree -L 3 > tree.txt
+pwd
+cd dev
+cd trabajo/
+ssh -T github-trabajo
+cd ~/dev/trabajo
+git clone git@github-trabajo:New-Sense-Geophysics/DataLogger-Refactoring-system.git
+pwd
+ls -lla
+cd DataLogger-Refactoring-system/
+git fetch --all --prune
+git branch -r
+git fetch origin feature/13-isolate-main-pipeline-recording
+git switch --track origin/feature/13-isolate-main-pipeline-recording
+pwd
+python -m venv refactorVenv
+python3 -m venv refactorVenv
+source refactorVenv/bin/activate
+pip install -r requirements.txt
+pip list
+npm i -g @anthropic-ai/claude-code
+sudo npm i -g @anthropic-ai/claude-code
+npm fund
+pwd
+sudo claude doctor
+sudo apt update && sudo apt install tree
+tree -L 3 > tree.txt
+pwd
+git add .
+git commit -m "replace all bad console error due to two arguments in ortho, dualmag and gps view""
+git commit -m "replace all bad console error due to two arguments in ortho, dualmag and gps view"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add _handle_toggle_button_clicked to handle correct position"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add correct mapping method to main_window"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "change dual mag reference por data3 reference"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add qtiter in dual view handler and clear buffer"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "fix ortho handler, pipe connection manager and pipe reader handler"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "adapt logic to read x, y, z in a proper way ortho handler"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add log in _process_axis_data"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "adjust algorithm in dual mag view and ortho to set max and min"
+git push origin feature/13-isolate-main-pipeline-recording 
+claude
+sudo apt install claude
+sudo claude doctor
+sudo npm install claude
+sudo npm install --updateclaude
+sudo npm install --update claude
+sudo claude doctor
+sudo claude
+pwd
+git add .
+git commit -m "debug dualmag and ortho in both views"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "delete issues in dual_view handlers and view"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "modify add_data_point_mag1 to use absolute time from piepe 1 and pipe 2"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add validation to Unexpected error in reader loop: 'NoneType' object cannot be interpreted as an integer"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "delete buffers and use real data to calcdulate max min from every single data"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "modify _update_mag1_scale, _update_mag2_scale to support nanoseconds"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "fix issue in decimation, add circular buffer to ensure x, y, z data flow"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add new pipe diagnostic to capture every single # data for example EOF"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "gix diagnostic pipe"
+git push origin feature/13-isolate-main-pipeline-recording 
+claude
+claude update
+sudo apt update
+sudo apt upgrade -y
+npm install -g npm@latest
+claude doctor
+sudo chown -R $USER:$(id -gn) $(npm -g config get prefix)
+claude doctor
+claude update
+claude
+git branch
+giit add .
+git add .
+git commit -m "add documentation architecture, data adquisition and daemons"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "refactor dualmag handler, view and add new class timesync"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add logic_bussiness documentation and wait_for_complete_stop() method in dualmag view"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "edit single mag handler and delete EOF interpreter"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add priotection to pipe_fd tyo avoid none"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "delete EOF interprteter in handlers"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "comment _flush_pipe() in initial view like mag1"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add delay in init"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "delete select() in single mag handler"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add two new handlers, single mag 1 and 2"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add logging to see pipe behaviors"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "clean _clean_buffer to clean old points"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "modify single mag view to delete points"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "limits samples to 25 in mag1 and mag2"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "clone dual mag and fork mag2 base on dualmag"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "replace mag2 view chart por examples dual mag view chart"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "copy mag2 handler and view to mag1"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "edit reference to mAG1"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "change ortho view and handler like dualmag"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "comment most repetitive logs in handlers and views"
+git push origin feature/13-isolate-main-pipeline-recording 
+modificaste algo que no se debia? mira (refactorVenv) nsg@raspberrypi:~/DataLogger-Refactoring-system $ python ./main.py
+Traceback (most recent call last):
+IndentationError: expected an indented block after 'else' statement on line 570
+(refactorVenv) nsg@raspberrypi:~/DataLogger-Refactoring-system $ 
+git add .
+git commit -m "fix identation issue in ortho view"
+(refactorVenv) nsg@raspberrypi:~/DataLogger-Refactoring-system $ 
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "delete more log messages in ortho view"
+git push origin feature/13-isolate-main-pipeline-recording 
+claude
+git add .
+git commit -m "adjust ortho view to see x, y, z secuential"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add thread safe to communicate between pipes and view"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "modify _update_scales and create _update_global_y_scale to adjust y axis in both mags"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add log to detect mismatch between two mags"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "change sensor_id to capture data from both pipes"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add buffer to clean data from pipes"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add logs to y-split match or divergue"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add more time in orchestrator, abour 1600 ms in buffer"
+git pull origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add more time in orchestrator, abour 1600 ms in buffer"
+git pull origin feature/13-isolate-main-pipeline-recording 
+pwd
+git add .
+git commit -m "modify quspin daemon orchestrator singleton and clean pid process"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "create a notificacion amd sync between daemons and delete and destroy every single ddaemon before start the software"
+git push origin feature/13-isolate-main-pipeline-recording 
+pwd
+git add .
+git commit -m "add condition_variable in daemon orchestrator"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "move g_data_ready_cv out"
+git push origin feature/13-isolate-main-pipeline-recording 
+claude
+sudo npm install node
+sudo apt upgrade
+node --version
+npm --version
+cd
+ls -lla
+pwd
+cd dev/
+ls -lla
+cd personal
+ls -lla
+mkdir astro
+cd astro/
+mkdir astro_devtalles
+cd astro_devtalles/
+npm create astro@latest
+ls -lla
+cd 01-fundations/
+npm run dev
+code
+cd ..
+code .
+npm run dev
+code .
+cd 01-fundations/
+npm run dev
+pwd
+cd 01-fundations/
+npm run dev
+claude
+npm --version
+node --version
+npm run dev
+pwd
+cd 01-fundations/
+npm run dev
+pwd
+cd dev/
+cd personal/
+ls -lla
+cd freiredev/
+ls -lla
+cd Thepro_theme/
+git status
+ls -lla
+git init
+git commit -m "first commit"
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:freiregtr/thepro_wordpress_plugin.git
+git push origin main 
+git remote add origin git@github.com:freiregtr/thepro_wordpress_plugin.git
+rm -rf .git
+git init
+git status
+git add .
+git remote add origin git@github.com:freiregtr/thepro_wordpress_plugin.git
+git branch -M main
+git push -u origin main
+pwd
+sudo apt update && sudo apt upgrade
+sudo apt install docker.io docker-compose
+sudo usermod -aG docker $USER
+wsl --shutdown
+wsl2 --shutdown
+wsl --shutdown
+pwd
+cd dev/
+ls
+cd personal/
+ls
+cd fre
+cd freiredev/
+ls
+cd freiredev.cl/
+ls
+cd ..
+ls
+cd freiredev.cl/
+ls
+cd public_html/
+nano docker-compose.yml
+docker-compose up -d
+wsl --set-default-version 2
+sudo apt update && sudo apt upgrade -y
+sudo cp /tmp/blog-sidebar.css
+sudo cp /tmp/blog-sidebar.css /home/ramon/dev/personal/freiredev/freiredev.cl/public_html/wp-content/themes/thepro/assets/css/blog-sidebar.css
+pwd
+docker-compose restart
+pwd
+sudo service docker start
+systemctl status docker
+cd dev/
+cd personal/
+ls
+cd freiredev/
+ls
+cd freiredev.cl/
+cd public_html/
+nano docker-compose.yml
+ls -lla
+nano docker-compose.yml
+pwd
+cd ..
+nano docker-compose.yml
+sudo usermod -a -G www-data ramon
+sudo chmod -R g+w /home/ramon/dev/personal/freiredev/freiredev.cl/public_html/wp-content/themes/thepro/
+newgrp www-data
+claude
+claude
+git add .
+git commit -m "add documentation about buffers, pipes and daemons. besides, pipe buffer has increased 1024 to 8192"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "edit hardcoded route to new nmve disk"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add /tmp/orchestrator_status.pipe as a new pipe"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "modify call writeStatusPipe function"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add new view: dashboard in logs button"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "fix logs button to see dashboard"
+git push origin feature/13-isolate-main-pipeline-recording 
+claude
+git add .
+git commit -m "add auto detection mag to record with or without two mags"
+git push origin feature/13-isolate-main-pipeline-recording 
+pwd
+ls -lla
+cd dev/
+ls
+cd personal/
+ls -lla
+cd freiredev/
+ls
+cd freiredev.cl/
+wsl --version
+wsl --list --verbose
+sudo apt update && sudo apt upgrade -y
+docker --version
+docker compose version
+which docker
+dpkg -l | grep docker
+sudo systemctl docker status
+sudo service docker status
+docker info
+docker ps
+docker compose ps
+sudo service docker start
+sudo service docker status
+docker ps
+sudo service docker status
+pwd
+ls -lla
+docker port freiredev-wp
+docker ps
+pwd
+ls -lla
+nano docker-compose.yml 
+hostname -I
+claude
+pwd
+git add .
+git commit -m "move DataContainer, CSVRow y MagnetometerData before definitions in perfect_sync_orchestrator.cpp"
+git push origin feature/13-isolate-main-pipeline-recording 
+pwd
+git log --oneline
+git reset --hard 2c9cdef
+git push origin feature/13-isolate-main-pipeline-recording --force
+git add .
+git commit -m "add current config.h to set multiple enviroments like base station, one or two mags record, etc"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "set variable HOME in c++ files"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "complete perfect_sync_orchestrator_configurable.cpp reference"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "fix init window 450x450 and fix $HOME variable issues"
+git push origin feature/13-isolate-main-pipeline-recording 
+claude
+claude
+pwd
+git add .
+git commit -m 'add some mods like good correction of current_config.h. auto creating routes in logs file'
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "change logs directory to home/local user/datalolgger-logs"
+git push origin feature/13-isolate-main-pipeline-recording 
+git fetch --all
+git add .
+git commit -m "add os in in config_manager.py"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add permissions +x to quspin_orchestrator"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "delete hardcoded routes in perfect_sync_orchestrator_configurable.cpp and no fallback if the file not find configuration file"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "remove perfect_sync_orchestrator_base from enviroments.json and replace for perfect_sync_orchestrator"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+gir commit -m "add more time 8sec to quspin_daemons.py"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add more time 8sec to quspin_daemons.py"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "change order to init daemon_manager.py and use lsoft to see signals"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add SCRIPT_DIR as a global variable to locate daemons/ properly"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "add $SCRIPT_DIR/ in orchestrator"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "change nsg instead of HOME global variable"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+git commit -m "divide quspin_manager.sh to set messages perfect and base_station divides with _run_command"
+git push origin feature/13-isolate-main-pipeline-recording 
+git add .
+ls /lla
+ls -lla
+pwd
+cd dev
+cd personal/
+ls 
+cd full-stack-2/
+git --status
+git --version
+it add .
+git add .
+git commit -m "primer comentario"
+git push -u origin main
+pwd
+rm -rf
+ls 
+ls -lla
+rm -rf idea
+rm -rf git
+git init
+git add README.md
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:freiregtr/full-stack2-07.git
+git push -u origin main
+pwd
+nano ~.ssh/config
+nano ~/.ssh/config
+ssh -T github-personal
+ssh -T github-trabajo
+pwd
+ls -lla
+cd dev
+ls
+cd personal
+ls -lla
+cd full-stack-2/
+ls -lla
+rm -rf .git
+ls -lla
+echo "# full-stack2-07" >> README.md
+git init
+git add README.md
+git commit -m "primer comentario"
+git branch -M main
+git remote add origin git@github.com:freiregtr/full-stack2-07.git
+git push -u origin main
+git remote add origin git@github-personal:freiregtr/full-stack2-07.git
+rm -rf .gity
+rm -rf .git
+echo "# full-stack2-07" >> README.md
+git init
+git add README.md
+git commit -m "primer comentario"
+git branch -M main
+git remote add origin git@github-perssonal:freiregtr/full-stack2-07.gi
+git push -u origin main
+git remote -v
+git remote add origin git@github-personal:freiregtr/full-stack2-07.git
+rm -rf .git
+echo "# full-stack2-07" >> README.md
+git init
+git add README.md
+git commit -m "primer comentario"
+git branch -M main
+git remote add origin git@github-personal:freiregtr/full-stack2-07.git
+git push -u origin main
+claude
+git add 
+git add .
+git commit -m "optimize time init method in python"
+git push origin feature/13-isolate-main-pipeline-recording 
+claude
+git log
+pwd
+cd dev
+cd personal/
+ls 
+ls
+rm -rf full-stack-2.rar 
+cd full-stack-2/
+ls
+cd html-css-javascript/
+ls
+cd html
+ls-lla
+ls -lla
+git log
+git status
+git add .
+git commit -m "agregar archivos html al proyecto"
+git push -u origin main 
+git add .
+git commit -m "introduccion del contenido html en README.md, ademas de los enlaces en cada contenido"
+pwd
+cd ../..
+pwd
+git add .
+git commit -m "introduccion del contenido html en README.md, ademas de los enlaces en cada contenido"
+git push origin main 
+claude
