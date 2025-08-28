@@ -1,0 +1,625 @@
+/* Reset básico - Eliminamos espacios por defecto del navegador */
+/* Esto nos da control total sobre el espaciado de nuestros elementos */
+* {
+    margin: 0;          /* Sin márgenes por defecto */
+    padding: 0;         /* Sin rellenos por defecto */
+    box-sizing: border-box;  /* El ancho incluye padding y border */
+}
+
+/* Estilos base del body - Configuración general de la página */
+body {
+    font-family: Arial, sans-serif;  /* Fuente legible y disponible */
+    line-height: 1.6;                /* Espaciado entre líneas cómodo */
+    color: #333;                      /* Gris oscuro, más suave que negro */
+    background-color: #ffffff;        /* Fondo blanco limpio */
+    padding-top: 70px;               /* Espacio para el header fijo */
+}
+
+/* Scroll suave - Navegación elegante entre secciones */
+/* Cuando alguien hace clic en el menú, se desliza suavemente */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mejoras generales - Detalles que marcan la diferencia */
+/* Cuando seleccionas texto, se ve con los colores de nuestra marca */
+::selection {
+    background-color: #2563eb;  /* Azul de nuestra paleta */
+    color: white;               /* Texto blanco para contraste */
+}
+
+/* Efecto de clic en botones - Feedback visual al usuario */
+/* Cuando presionas un botón, se hace ligeramente más pequeño */
+.btn:active {
+    transform: scale(0.98);  /* Se reduce al 98% cuando se presiona */
+}
+
+/* Animación sutil para las cards - Aparecen gradualmente */
+/* Las tarjetas se deslizan desde abajo al cargar la página */
+.project-card,
+.stat {
+    animation: fadeInUp 0.6s ease-out;  /* Aparece en 0.6 segundos */
+}
+
+/* Definimos la animación fadeInUp */
+/* De invisible y 30px abajo, a visible y en su posición */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;                    /* Invisible */
+        transform: translateY(30px);   /* 30px más abajo */
+    }
+    to {
+        opacity: 1;                    /* Completamente visible */
+        transform: translateY(0);      /* En su posición final */
+    }
+}
+
+/* Efecto focus mejorado - Accesibilidad para navegación con teclado */
+/* Cuando navegas con Tab, muestra un borde azul sutil */
+.btn:focus,
+input:focus,
+textarea:focus {
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);  /* Sombra azul transparente */
+}
+
+/* Header y Navegación - Barra superior que siempre está visible */
+/* Configuramos el header para que se quede fijo arriba al hacer scroll */
+.header {
+    background-color: #ffffff;                 /* Fondo blanco limpio */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para separarlo */
+    position: fixed;    /* Se queda fijo al hacer scroll */
+    top: 0;            /* Pegado arriba */
+    left: 0;           /* Pegado a la izquierda */
+    right: 0;          /* Pegado a la derecha (ancho completo) */
+    z-index: 1000;     /* Aparece sobre otros elementos */
+}
+
+/* Contenedor de la navegación - Organiza logo y menú */
+/* Usamos Flexbox para poner logo a la izquierda y menú a la derecha */
+.nav-container {
+    max-width: 1200px;              /* No más ancho que esto */
+    margin: 0 auto;                 /* Centrado horizontalmente */
+    padding: 0 20px;                /* Espacios laterales */
+    display: flex;                  /* Activamos Flexbox */
+    justify-content: space-between; /* Logo izquierda, menú derecha */
+    align-items: center;            /* Centrado vertical */
+    height: 70px;                   /* Altura fija del header */
+}
+
+/* Estilo del logo - Nuestra marca */
+/* El logo debe destacar con nuestro color principal */
+.logo h1 {
+    color: #2563eb;      /* Azul característico */
+    font-size: 1.8rem;   /* Tamaño prominente pero no excesivo */
+    margin: 0;           /* Sin márgenes para control total */
+}
+
+/* Menú de navegación - Lista horizontal de enlaces */
+/* Convertimos la lista vertical en horizontal usando Flexbox */
+.nav-menu {
+    display: flex;       /* Elementos en línea horizontal */
+    list-style: none;    /* Sin bullets de lista */
+    gap: 30px;          /* 30px de espacio entre cada enlace */
+    margin: 0;          /* Sin márgenes */
+    padding: 0;         /* Sin rellenos */
+}
+
+/* Enlaces del menú - Estilo y comportamiento */
+/* Los enlaces deben verse limpios y cambiar suavemente al pasar el mouse */
+.nav-menu a {
+    text-decoration: none;        /* Sin subrayado */
+    color: #333;                  /* Gris oscuro legible */
+    font-weight: 500;             /* Un poco más grueso que normal */
+    transition: color 0.3s ease;  /* Cambio suave de color en 0.3s */
+}
+
+/* Efecto hover en enlaces - Feedback visual */
+/* Al pasar el mouse, cambian al color de nuestra marca */
+.nav-menu a:hover {
+    color: #2563eb;  /* Azul principal cuando pasas el mouse */
+}
+
+/* Contenedor general - Mantiene el contenido centrado */
+/* Todas las secciones usan este contenedor para consistencia */
+.container {
+    max-width: 1200px;  /* Ancho máximo para legibilidad */
+    margin: 0 auto;     /* Centrado automático */
+    padding: 0 20px;    /* Espacios laterales en móviles */
+}
+
+/* Títulos de sección - Consistencia visual */
+/* Todos los títulos principales siguen el mismo patrón */
+.section-title {
+    text-align: center;    /* Centrado para impacto */
+    font-size: 2.5rem;     /* Grande pero no abrumador */
+    margin-bottom: 50px;   /* Espacio antes del contenido */
+    color: #2563eb;        /* Color de marca para coherencia */
+}
+
+/* Sección Hero - Creamos la primera impresión más impactante posible */
+/* Esta es lo primero que ve el visitante, debe capturar su atención inmediatamente */
+.hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Degradado diagonal de azul a morado para crear impacto visual */
+    color: white;               /* Texto blanco porque contrasta perfectamente con el fondo oscuro */
+    min-height: 80vh;          /* Ocupa el 80% de la altura visible para crear sensación de grandeza */
+    display: flex;             /* Usamos Flexbox porque es la forma más fácil de centrar contenido */
+    align-items: center;       /* Centra el contenido verticalmente en la pantalla */
+    justify-content: center;   /* Centra el contenido horizontalmente en la pantalla */
+    text-align: center;        /* Centra el texto dentro de cada elemento para armonía */
+}
+
+/* Contenedor del hero - Evitamos que el texto sea muy ancho y difícil de leer */
+.hero-container {
+    max-width: 1200px;  /* Limitamos a 1200px porque líneas muy largas son difíciles de leer */
+    padding: 0 20px;    /* Espacios laterales para que no toque los bordes en móviles */
+}
+
+/* Título principal del hero - Debe ser lo primero que capte la atención */
+.hero-title {
+    font-size: 3rem;       /* 48px - Lo suficientemente grande para impactar sin abrumar */
+    font-weight: 700;      /* Extra negrita porque queremos que destaque sobre todo lo demás */
+    margin-bottom: 20px;   /* Espacio calculado para separar del subtítulo sin romper la unidad visual */
+    line-height: 1.2;      /* Líneas más juntas porque en títulos grandes el espacio se ve excesivo */
+}
+
+/* Subtítulo del hero - Explica qué haces de forma clara y concisa */
+.hero-subtitle {
+    font-size: 1.3rem;     /* 20.8px - Más grande que texto normal para darle importancia */
+    margin-bottom: 30px;   /* Suficiente espacio para separar de los botones */
+    opacity: 0.9;          /* Ligeramente transparente para crear jerarquía: título más importante */
+    max-width: 600px;      /* Limitamos el ancho porque líneas muy largas son difíciles de leer */
+    margin-left: auto;     /* Combinado con margin-right hace el centrado automático */
+    margin-right: auto;    /* Combinado con margin-left hace el centrado automático */
+}
+
+/* Botones del hero - Las acciones más importantes que queremos que realicen */
+.hero-buttons {
+    display: flex;             /* Flexbox para alinearlos horizontalmente */
+    gap: 20px;                 /* 20px de separación para que no se vean pegados */
+    justify-content: center;   /* Centrados porque es la posición más equilibrada visualmente */
+    flex-wrap: wrap;          /* En móviles se apilan uno debajo del otro automáticamente */
+}
+
+/* Sistema de botones - Creamos botones profesionales y usables */
+.btn {
+    display: inline-block;           /* Se comporta como botón pero puede ser un enlace */
+    padding: 12px 30px;             /* Padding calculado para ser fácil de clickear (mínimo 44px de altura) */
+    border-radius: 5px;             /* Esquinas ligeramente redondeadas para look moderno sin exagerar */
+    text-decoration: none;          /* Sin subrayado porque los botones no deben verse como enlaces */
+    font-weight: 600;               /* Semi-negrita para que el texto destaque y sea legible */
+    transition: all 0.3s ease;      /* Transición suave para que los cambios se vean profesionales */
+    border: 2px solid transparent;  /* Borde transparente que usaremos en los efectos hover */
+}
+
+/* Botón primario - La acción más importante que queremos que hagan */
+.btn-primary {
+    background-color: #ffffff;  /* Fondo blanco porque destaca perfectamente sobre el degradado */
+    color: #2563eb;            /* Color azul (nuestro color de marca) para consistencia */
+}
+
+/* Botón primario en hover - Efecto elegante de inversión */
+.btn-primary:hover {
+    background-color: transparent;  /* Se vuelve transparente para mostrar el degradado */
+    color: #ffffff;                /* Texto cambia a blanco para contrastar */
+    border-color: #ffffff;         /* Aparece borde blanco para mantener la forma del botón */
+}
+
+/* Botón secundario - Acción menos importante pero visible */
+.btn-secondary {
+    background-color: transparent;  /* Sin fondo para darle menos prominencia visual */
+    color: #ffffff;                /* Texto blanco para contrastar con el fondo oscuro */
+    border-color: #ffffff;         /* Borde blanco para definir los límites del botón */
+}
+
+/* Botón secundario en hover - Se vuelve sólido para feedback visual */
+.btn-secondary:hover {
+    background-color: #ffffff;  /* Se llena de blanco para indicar interacción */
+    color: #2563eb;            /* Texto cambia a azul para mantener contraste */
+}
+
+/* Botón ancho completo - Para formularios */
+.btn-full {
+    width: 100%;         /* Ocupa todo el ancho disponible */
+    padding: 15px;       /* Más relleno para formularios */
+    font-size: 1.1rem;   /* Ligeramente más grande */
+}
+
+/* Sección Acerca de - Información personal */
+/* Alternamos el color de fondo para separar visualmente las secciones */
+.about {
+    padding: 80px 0;              /* Espaciado generoso arriba y abajo */
+    background-color: #f8f9fa;    /* Gris muy claro para contrastar */
+}
+
+/* Layout de la sección about - Texto y estadísticas */
+/* Usamos CSS Grid: texto ocupa 2/3, estadísticas 1/3 */
+.about-content {
+    display: grid;                    /* Activamos CSS Grid */
+    grid-template-columns: 2fr 1fr;   /* 2 partes texto, 1 parte stats */
+    gap: 50px;                       /* Espacio entre columnas */
+    align-items: center;             /* Alineación vertical centrada */
+}
+
+/* Texto de la sección about - Fácil de leer */
+.about-text {
+    font-size: 1.1rem;    /* Ligeramente más grande para comodidad */
+    line-height: 1.8;      /* Espaciado generoso entre líneas */
+}
+
+/* Párrafos del about - Espaciado entre párrafos */
+.about-text p {
+    margin-bottom: 20px;  /* Espacio entre cada párrafo */
+}
+
+/* Contenedor de estadísticas - Tarjetas apiladas */
+.about-stats {
+    display: grid;                  /* Grid para las estadísticas */
+    grid-template-columns: 1fr;     /* Una columna en desktop */
+    gap: 30px;                     /* Espacio entre estadísticas */
+}
+
+/* Tarjeta individual de estadística */
+/* Cada número importante va en su propia tarjeta destacada */
+.stat {
+    text-align: center;                      /* Contenido centrado */
+    padding: 30px 20px;                     /* Relleno generoso */
+    background: white;                      /* Fondo blanco para destacar */
+    border-radius: 10px;                    /* Esquinas redondeadas */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra para elevar */
+}
+
+/* Número de la estadística - Debe impactar */
+.stat h3 {
+    font-size: 2.5rem;     /* Muy grande para impacto */
+    color: #2563eb;        /* Color de marca */
+    margin-bottom: 10px;   /* Espacio antes del texto */
+}
+
+/* Descripción de la estadística */
+.stat p {
+    color: #666;          /* Gris para menos prominencia */
+    font-size: 0.9rem;    /* Más pequeño que el número */
+}
+
+/* Sección Proyectos - Muestra tu trabajo */
+/* Volvemos al fondo blanco para alternar con la sección anterior */
+.projects {
+    padding: 80px 0;              /* Espaciado consistente */
+    background-color: #ffffff;    /* Fondo blanco para contraste */
+}
+
+/* Grid de proyectos - Cuadrícula responsiva automática */
+/* Los proyectos se organizan automáticamente según el ancho disponible */
+.projects-grid {
+    display: grid;                                              /* Activamos CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas automáticas, mínimo 300px */
+    gap: 30px;                                                  /* Espacio entre tarjetas */
+}
+
+/* Tarjeta de proyecto - Cada proyecto en su contenedor */
+/* Diseñamos tarjetas atractivas con efecto hover */
+.project-card {
+    background: white;                                     /* Fondo blanco limpio */
+    border-radius: 15px;                                  /* Esquinas muy redondeadas */
+    overflow: hidden;                                     /* Oculta contenido que sobresalga */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);             /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación suave */
+}
+
+/* Efecto hover en tarjetas de proyecto - Se eleva */
+.project-card:hover {
+    transform: translateY(-10px);                   /* Se eleva 10px */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);      /* Sombra más pronunciada */
+}
+
+/* Imagen del proyecto - Placeholder visual */
+/* Por ahora usamos un gradiente con número, luego puedes poner imágenes reales */
+.project-image {
+    height: 200px;                                               /* Altura fija */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradiente atractivo */
+    display: flex;                                               /* Para centrar contenido */
+    align-items: center;                                         /* Centrado vertical */
+    justify-content: center;                                     /* Centrado horizontal */
+    font-size: 3rem;                                           /* Número grande */
+    font-weight: 700;                                           /* Muy negrita */
+    color: white;                                               /* Texto blanco */
+}
+
+/* Información del proyecto - Contenido de la tarjeta */
+.project-info {
+    padding: 25px;  /* Espaciado cómodo dentro de la tarjeta */
+}
+
+/* Título del proyecto - Nombre destacado */
+.project-info h3 {
+    font-size: 1.5rem;     /* Tamaño prominente */
+    margin-bottom: 15px;   /* Espacio antes de la descripción */
+    color: #333;          /* Gris oscuro legible */
+}
+
+/* Descripción del proyecto - Explicación del trabajo */
+.project-info p {
+    color: #666;           /* Gris medio para texto secundario */
+    line-height: 1.6;      /* Espaciado legible */
+    margin-bottom: 20px;   /* Espacio antes de las tecnologías */
+}
+
+/* Contenedor de tecnologías - Etiquetas de habilidades */
+.project-tech {
+    display: flex;      /* Etiquetas en línea */
+    flex-wrap: wrap;    /* Se acomodan en varias líneas si es necesario */
+    gap: 10px;         /* Espacio entre etiquetas */
+}
+
+/* Etiqueta individual de tecnología - Skills usados */
+.project-tech span {
+    background: #e3f2fd;    /* Fondo azul muy claro */
+    color: #1976d2;         /* Texto azul oscuro */
+    padding: 5px 12px;      /* Relleno pequeño */
+    border-radius: 20px;    /* Muy redondeado (píldora) */
+    font-size: 0.8rem;      /* Texto pequeño */
+    font-weight: 600;       /* Semi-negrita */
+}
+
+/* Sección Contacto - Formulario para clientes */
+/* Alternamos el fondo otra vez para mantener el ritmo visual */
+.contact {
+    padding: 80px 0;              /* Espaciado consistente */
+    background-color: #f8f9fa;    /* Fondo gris claro */
+}
+
+/* Layout de contacto - Información y formulario */
+/* Dividimos en dos columnas: info a la izquierda, formulario a la derecha */
+.contact-content {
+    display: grid;                  /* CSS Grid para layout */
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    gap: 50px;                     /* Espacio entre columnas */
+    align-items: start;            /* Alineados arriba (alturas diferentes) */
+}
+
+/* Título de la información de contacto */
+.contact-info h3 {
+    font-size: 1.8rem;     /* Grande para llamar atención */
+    margin-bottom: 20px;   /* Espacio antes del texto */
+    color: #333;          /* Gris oscuro */
+}
+
+/* Descripción del contacto - Invitación a escribir */
+.contact-info p {
+    font-size: 1.1rem;     /* Ligeramente más grande */
+    line-height: 1.7;       /* Espaciado cómodo */
+    color: #666;           /* Gris medio */
+    margin-bottom: 30px;   /* Espacio antes de los datos */
+}
+
+/* Item individual de contacto - Email, teléfono, etc */
+.contact-item {
+    margin-bottom: 15px;  /* Espacio entre cada item */
+    font-size: 1rem;      /* Tamaño normal */
+    color: #333;          /* Gris oscuro legible */
+}
+
+/* Etiquetas de contacto - Email:, Teléfono:, etc */
+.contact-item strong {
+    color: #2563eb;  /* Color de marca para las etiquetas */
+}
+
+/* Formulario de contacto - Tarjeta destacada */
+/* El formulario debe destacar como elemento principal */
+.contact-form {
+    background: white;                        /* Fondo blanco para destacar */
+    padding: 40px;                           /* Relleno generoso */
+    border-radius: 15px;                     /* Esquinas redondeadas */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Sombra para elevar */
+}
+
+/* Grupo de campo de formulario - Cada input con su label */
+.form-group {
+    margin-bottom: 25px;  /* Espacio entre cada campo */
+}
+
+/* Etiquetas de formulario - Nombre, Email, etc */
+.form-group label {
+    display: block;        /* Ocupa toda la línea */
+    margin-bottom: 8px;    /* Espacio antes del input */
+    font-weight: 600;      /* Semi-negrita para destacar */
+    color: #333;          /* Gris oscuro */
+}
+
+/* Campos de entrada - Inputs y textarea */
+/* Todos los campos deben verse consistentes y cómodos de usar */
+.form-group input,
+.form-group textarea {
+    width: 100%;                       /* Ancho completo */
+    padding: 12px 15px;                /* Relleno cómodo */
+    border: 2px solid #e1e5e9;         /* Borde gris claro */
+    border-radius: 8px;                /* Esquinas redondeadas */
+    font-size: 1rem;                   /* Tamaño legible */
+    transition: border-color 0.3s ease; /* Transición suave del borde */
+}
+
+/* Campos en focus - Cuando el usuario hace clic */
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;           /* Sin borde por defecto del navegador */
+    border-color: #2563eb;   /* Borde azul cuando está activo */
+}
+
+/* Footer - Pie de página final */
+/* El footer debe ser oscuro para marcar el final del sitio */
+.footer {
+    background-color: #333;    /* Fondo gris oscuro */
+    color: white;             /* Texto blanco para contraste */
+    padding: 50px 0 20px;     /* Más espaciado arriba que abajo */
+}
+
+/* Contenido principal del footer - Info y enlaces */
+.footer-content {
+    display: grid;                    /* Grid para organizar */
+    grid-template-columns: 2fr 1fr;   /* Info ocupa más espacio que enlaces */
+    gap: 50px;                       /* Espacio entre columnas */
+    margin-bottom: 30px;             /* Espacio antes del copyright */
+}
+
+/* Título del footer - Reafirma la marca */
+.footer-info h3 {
+    font-size: 1.5rem;     /* Prominente pero no excesivo */
+    margin-bottom: 15px;   /* Espacio antes de la descripción */
+    color: #2563eb;        /* Color de marca para coherencia */
+}
+
+/* Descripción del footer - Resumen de tu trabajo */
+.footer-info p {
+    color: #ccc;        /* Gris claro para texto secundario */
+    line-height: 1.6;   /* Espaciado legible */
+}
+
+/* Enlaces del footer - Navegación secundaria */
+.footer-links {
+    display: flex;           /* Flexbox para los enlaces */
+    flex-direction: column;  /* Apilados verticalmente */
+    gap: 15px;              /* Espacio entre enlaces */
+}
+
+/* Enlaces individuales del footer */
+.footer-links a {
+    color: #ccc;                  /* Gris claro */
+    text-decoration: none;        /* Sin subrayado */
+    transition: color 0.3s ease;  /* Transición suave */
+}
+
+/* Hover en enlaces del footer */
+.footer-links a:hover {
+    color: #2563eb;  /* Azul de marca al pasar el mouse */
+}
+
+/* Sección de copyright - Información legal */
+.footer-bottom {
+    border-top: 1px solid #555;  /* Línea divisoria sutil */
+    padding-top: 20px;           /* Espacio después de la línea */
+    text-align: center;          /* Copyright centrado */
+    color: #999;                /* Gris muy claro */
+    font-size: 0.9rem;          /* Texto pequeño */
+}
+
+/* RESPONSIVE DESIGN - Adaptación a móviles y tablets */
+/* Cuando la pantalla es menor a 768px (tablets y móviles) */
+@media (max-width: 768px) {
+    /* Navegación en móvil - Cambiamos de horizontal a vertical */
+    .nav-container {
+        flex-direction: column;  /* Logo arriba, menú abajo */
+        height: auto;           /* Altura automática (no fija) */
+        padding: 15px 20px;     /* Menos padding */
+    }
+    
+    /* Menú en móvil - Centrado y con menos espacio */
+    .nav-menu {
+        margin-top: 15px;         /* Espacio después del logo */
+        flex-wrap: wrap;          /* Se acomoda en varias líneas */
+        justify-content: center;  /* Centrado */
+        gap: 20px;               /* Menos espacio entre enlaces */
+    }
+    
+    /* Título hero más pequeño en móvil - Para que quepa bien */
+    .hero-title {
+        font-size: 2.2rem;  /* Reducimos de 3rem a 2.2rem */
+    }
+    
+    /* Subtítulo hero ajustado para móvil */
+    .hero-subtitle {
+        font-size: 1.1rem;  /* Reducimos de 1.3rem a 1.1rem */
+    }
+    
+    /* Botones del hero en móvil - Apilados verticalmente */
+    .hero-buttons {
+        flex-direction: column;  /* Uno debajo del otro */
+        align-items: center;     /* Centrados */
+    }
+    
+    /* Botones en móvil - Ancho fijo y centrado */
+    .btn {
+        width: 200px;        /* Mismo ancho para todos */
+        text-align: center;  /* Texto centrado */
+    }
+    
+    /* Ajuste del body - Más espacio para header más alto */
+    body {
+        padding-top: 120px;  /* Más padding porque el header es más alto */
+    }
+    
+    /* Sección about en móvil - Una sola columna */
+    .about-content {
+        grid-template-columns: 1fr;  /* Solo una columna */
+        gap: 40px;                  /* Menos espacio entre elementos */
+    }
+    
+    /* Estadísticas en móvil - Tres columnas pequeñas */
+    .about-stats {
+        grid-template-columns: repeat(3, 1fr);  /* 3 columnas en horizontal */
+        gap: 15px;                             /* Espacio mínimo */
+    }
+    
+    /* Tarjetas de estadísticas más compactas en móvil */
+    .stat {
+        padding: 20px 10px;  /* Menos padding para ahorrar espacio */
+    }
+    
+    /* Títulos de sección más pequeños en móvil */
+    .section-title {
+        font-size: 2rem;  /* Reducimos de 2.5rem a 2rem */
+    }
+    
+    /* Grid de proyectos en móvil - Una sola columna */
+    .projects-grid {
+        grid-template-columns: 1fr;  /* Proyectos apilados verticalmente */
+    }
+    
+    /* Contacto en móvil - Info arriba, formulario abajo */
+    .contact-content {
+        grid-template-columns: 1fr;  /* Una sola columna */
+        gap: 30px;                  /* Menos espacio entre elementos */
+    }
+    
+    /* Formulario más compacto en móvil */
+    .contact-form {
+        padding: 25px;  /* Menos padding interno */
+    }
+    
+    /* Footer en móvil - Todo centrado y apilado */
+    .footer-content {
+        grid-template-columns: 1fr;  /* Una sola columna */
+        gap: 30px;                  /* Espacio entre elementos */
+        text-align: center;         /* Todo centrado */
+    }
+    
+    /* Enlaces del footer en móvil - Horizontales centrados */
+    .footer-links {
+        flex-direction: row;        /* Cambiamos a horizontal */
+        justify-content: center;    /* Centrados */
+        flex-wrap: wrap;           /* Se acomodan si no caben */
+    }
+}
+
+/* MÓVILES PEQUEÑOS - Menos de 480px de ancho */
+/* Para teléfonos muy pequeños, ajustamos aún más */
+@media (max-width: 480px) {
+    /* Header aún más compacto en móviles pequeños */
+    .nav-container {
+        padding: 10px 15px;  /* Padding mínimo */
+    }
+    
+    /* Título hero muy compacto para pantallas muy pequeñas */
+    .hero-title {
+        font-size: 1.8rem;  /* Aún más pequeño */
+    }
+    
+    /* Subtítulo en tamaño base para móviles pequeños */
+    .hero-subtitle {
+        font-size: 1rem;  /* Tamaño base (16px) */
+    }
+    
+    /* Contenedor hero con padding mínimo en móviles pequeños */
+    .hero-container {
+        padding: 0 15px;  /* Padding reducido para aprovechar espacio */
+    }
+}

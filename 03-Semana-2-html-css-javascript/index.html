@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navigation">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>Mi Portafolio</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#acerca">Acerca de</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h2 class="hero-title">Soy Desarrollador Web</h2>
+                    <p class="hero-subtitle">
+                        Creo sitios web modernos y funcionales que ayudan 
+                        a las empresas a crecer en el mundo digital.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
+                        <a href="#contacto" class="btn btn-secondary">Contactar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="acerca" class="about">
+            <div class="container">
+                <h2 class="section-title">Acerca de Mí</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Soy desarrollador web con 3+ años de experiencia creando 
+                        sitios modernos y funcionales. Me especializo en HTML, CSS, 
+                        JavaScript y React.</p>
+                        <p>Mi pasión es crear experiencias digitales que no solo 
+                        se vean bien, sino que también resuelvan problemas reales 
+                        de usuarios y empresas.</p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>25+</h3>
+                            <p>Proyectos Completados</p>
+                        </div>
+                        <div class="stat">
+                            <h3>3+</h3>
+                            <p>Años de Experiencia</p>
+                        </div>
+                        <div class="stat">
+                            <h3>15+</h3>
+                            <p>Clientes Felices</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proyectos" class="projects">
+            <div class="container">
+                <h2 class="section-title">Mis Proyectos</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">01</div>
+                        <div class="project-info">
+                            <h3>E-commerce</h3>
+                            <p>Tienda online completa con carrito de compras y pasarela de pago.</p>
+                            <div class="project-tech">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image">02</div>
+                        <div class="project-info">
+                            <h3>Dashboard</h3>
+                            <p>Panel de control con gráficos y estadísticas en tiempo real.</p>
+                            <div class="project-tech">
+                                <span>React</span>
+                                <span>CSS</span>
+                                <span>API</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image">03</div>
+                        <div class="project-info">
+                            <h3>Blog Personal</h3>
+                            <p>Blog responsive con sistema de comentarios y categorías.</p>
+                            <div class="project-tech">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>PHP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact">
+            <div class="container">
+                <h2 class="section-title">Contacto</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>¿Trabajamos juntos?</h3>
+                        <p>Si tienes un proyecto en mente o quieres colaborar, 
+                        no dudes en contactarme. Respondo en menos de 24 horas.</p>
+                        
+                        <div class="contact-item">
+                            <strong>Email:</strong> tu@email.com
+                        </div>
+                        <div class="contact-item">
+                            <strong>Teléfono:</strong> +1 234 567 8900
+                        </div>
+                        <div class="contact-item">
+                            <strong>Ubicación:</strong> Tu Ciudad, País
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="asunto">Asunto</label>
+                            <input type="text" id="asunto" name="asunto" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Mi Portafolio</h3>
+                    <p>Desarrollador web especializado en crear experiencias digitales únicas.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#acerca">Acerca de</a>
+                    <a href="#proyectos">Proyectos</a>
+                    <a href="#contacto">Contacto</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Mi Portafolio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript del formulario de contacto -->
+    <script src="js/script.js"></script>
+</body>
+</html>
