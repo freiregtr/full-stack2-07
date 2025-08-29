@@ -65,7 +65,7 @@ if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
 // SECCION 5: CONFIGURAR NODEMAILER PARA GMAIL
 // Nodemailer necesita saber que servicio de correo usar y las credenciales para acceder
 
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
     service: 'gmail', // Le decimos que use Gmail (podria ser 'outlook', 'yahoo', etc)
     auth: {
         user: process.env.EMAIL_USER, // Tu correo de Gmail desde el archivo .env
@@ -249,3 +249,5 @@ app.listen(PORT, () => {
     // Los usuarios pueden ir a localhost:3000 y ver el portafolio
     // El formulario puede enviar datos a localhost:3000/api/contact
 });
+
+
