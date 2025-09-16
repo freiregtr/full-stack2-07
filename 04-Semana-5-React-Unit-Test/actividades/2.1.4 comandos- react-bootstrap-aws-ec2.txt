@@ -1,0 +1,230 @@
+## Configuración del Entorno de Desarrollo en EC2 t2.micro
+
+### 1. Conexión a la instancia EC2
+- Usa SSH para conectarte a tu instancia EC2:
+  ```bash
+  ssh -i "tu-key.pem" ec2-user@tu-ip-publica
+  ```
+
+### 2. Actualización del sistema e instalación de dependencias
+- Ejecuta los siguientes comandos:
+  ```bash
+  sudo yum update -y
+  sudo yum install -y gcc-c++ make
+  ```
+
+### 3. Instalación de Node.js y npm
+- Instala Node.js usando el administrador de versiones nvm:
+  ```bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+  . ~/.nvm/nvm.sh
+  nvm install 14
+  ```
+- Verifica la instalación:
+  ```bash
+  node --version
+  npm --version
+  ```
+
+### 4. Creación de un nuevo proyecto React
+- Crea y navega al directorio del proyecto:
+  ```bash
+  mkdir my-ecommerce-app
+  cd my-ecommerce-app
+  npx create-react-app .
+  ```
+
+### 5. Instalación de dependencias (Bootstrap, react-bootstrap)
+- Dentro del directorio del proyecto, ejecuta:
+  ```bash
+  npm install react-bootstrap bootstrap
+  ```
+
+## Estructura del Proyecto React en EC2
+
+La estructura de tu proyecto en la instancia EC2 será:
+
+sudo apt-get install tree
+tree
+
+```
+/home/ec2-user/my-ecommerce-app/
+│
+├── node_modules/
+│
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   └── manifest.json
+│
+├── src/
+│   ├── components/   (crearemos esta carpeta)
+│   │   ├── Navbar.js
+│   │   ├── ProductList.js
+│   │   ├── ShoppingCart.js
+│   │   └── RegistrationForm.js
+│   ├── App.js
+│   ├── App.css
+│   ├── index.js
+│   └── index.css
+│
+├── package.json
+├── package-lock.json
+└── README.md
+```
+
+Para crear la estructura de carpetas:
+```bash
+mkdir src/components
+ls
+touch src/components/{Navbar.js,ProductList.js,ShoppingCart.js,RegistrationForm.js}
+ls
+```
+
+## Creación de la Aplicación React con Bootstrap en EC2
+
+### 1. Configuración de Bootstrap en el proyecto
+- Edita `src/index.js` usando nano o vim:
+  ```bash
+  nano src/index.js
+  ```
+- Añade la siguiente línea al principio del archivo:
+  ```javascript
+  import 'bootstrap/dist/css/bootstrap.min.css';
+  ```
+ctrl + o
+ctrl + x
+
+### 2. Creación de un layout básico con React Bootstrap
+- Edita `src/App.js`:
+  ```bash
+  nano src/App.js
+  ```
+- Reemplaza el contenido con:
+
+```jsx
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import Navbar from './components/Navbar';
+import ProductList from './components/ProductList';
+import ShoppingCart from './components/ShoppingCart';
+import RegistrationForm from './components/RegistrationForm';
+
+function App() {
+  return (
+    <div className="App">
+      <Navbar />
+      <Container>
+        <Row>
+          <Col md={8}>
+            <ProductList />
+          </Col>
+          <Col md={4}>
+            <ShoppingCart />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <RegistrationForm />
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### 3. Implementación de navegación responsiva
+- Crea y edita `src/components/Navbar.js`:
+  ```bash
+  nano src/components/Navbar.js
+  ```
+- Añade el siguiente contenido:
+
+```jsx
+import React from 'react';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+
+const Navigation = () => {
+  return (
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand href="#home">Mi Tienda</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Inicio</Nav.Link>
+            <Nav.Link href="#products">Productos</Nav.Link>
+            <Nav.Link href="#cart">Carrito</Nav.Link>
+            <Nav.Link href="#register">Registro</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+};
+
+export default Navigation;
+```
+
+### 4. Creación de componentes básicos
+- Crea y edita los componentes restantes. Por ejemplo, para `ProductList.js`:
+  ```bash
+  nano src/components/ProductList.js
+  ```
+- Añade un contenido básico:
+
+```jsx
+import React from 'react';
+
+const ProductList = () => {
+  return (
+    <div>
+      <h2>Lista de Productos</h2>
+      {/* Aquí irá la lista de productos */}
+    </div>
+  );
+};
+
+export default ProductList;
+```
+
+- Repite este proceso para `ShoppingCart.js` y `RegistrationForm.js`
+
+### 5. Preparación para ejecutar la aplicación
+- Por defecto, create-react-app configura la aplicación para escuchar solo en localhost. Para permitir el acceso desde fuera de la instancia EC2, necesitamos modificar el script de inicio.
+- Edita `package.json`:
+  ```bash
+  nano package.json
+  ```
+- Busca la línea `"start": "react-scripts start",` y cámbiala por:
+  ```json
+  "start": "PORT=3000 DANGEROUSLY_DISABLE_HOST_CHECK=true react-scripts start",
+  ```
+
+### 6. Configuración de seguridad en EC2
+- Asegúrate de que el puerto 3000 esté abierto en el grupo de seguridad de tu instancia EC2.
+ ```bash
+curl http://tu-ip-publica:3000
+```
+### 7. Ejecutar la aplicación
+- Inicia la aplicación:
+  ```bash
+  npm start
+  ```
+- Accede a tu aplicación desde un navegador usando la IP pública de tu instancia EC2: `http://tu-ip-publica:3000`
+
+Nota: Este método es para desarrollo. Para producción, se recomienda construir la aplicación y servirla con un servidor web como Nginx.
+
+
+ https://cra.link/deployment
+
+
+
+
+
+curl: (7) Failed to connect to localhost port 3000 after 0 ms: Connection refused
+
+
