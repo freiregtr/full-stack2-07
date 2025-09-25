@@ -9,23 +9,27 @@ El archivo App.js es el componente principal que contiene toda tu aplicacion. Aq
 ### Codigo completo para src/App.js
 
 ```jsx
+// importar react y componentes de bootstrap
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+
+// importar todos nuestros componentes personalizados
 import Navigation from './components/Navbar';
 import ProductList from './components/ProductList';
 import ShoppingCart from './components/ShoppingCart';
 import RegistrationForm from './components/RegistrationForm';
 import './App.css';
 
+// componente principal de la aplicacion
 function App() {
   return (
     <div className="App">
-      {/* Barra de navegacion en la parte superior */}
+      {/* navbar fijo en la parte superior */}
       <Navigation />
 
-      {/* Contenido principal con Container de Bootstrap */}
+      {/* contenedor principal que centra el contenido */}
       <Container className="mt-4">
-        {/* Titulo principal */}
+        {/* seccion hero con titulo principal */}
         <div className="text-center mb-5">
           <h1 className="display-4 text-primary">Bienvenido a Mi E-Commerce</h1>
           <p className="lead text-muted">
@@ -33,20 +37,22 @@ function App() {
           </p>
         </div>
 
-        {/* Seccion de productos */}
+        {/* catalogo de productos - ocupa todo el ancho */}
         <ProductList />
 
-        {/* Seccion inferior: Formulario y Carrito */}
+        {/* grilla responsive para formulario y carrito */}
         <Row className="mt-5">
+          {/* formulario: 8 columnas en desktop, 12 en mobile */}
           <Col lg={8}>
             <RegistrationForm />
           </Col>
+          {/* carrito: 4 columnas en desktop, 12 en mobile */}
           <Col lg={4}>
             <ShoppingCart />
           </Col>
         </Row>
 
-        {/* Footer simple */}
+        {/* footer simple con copyright */}
         <footer className="text-center mt-5 py-4 border-top">
           <p className="text-muted mb-0">
             © 2024 Mi E-Commerce. Todos los derechos reservados.
@@ -94,53 +100,55 @@ export default App;
 Si quieres personalizar un poco mas tu aplicacion, puedes agregar estos estilos a `src/App.css`:
 
 ```css
+/* estilos generales de la aplicacion */
 .App {
-  min-height: 100vh;
-  background-color: #f8f9fa;
+  min-height: 100vh; /* altura minima de toda la pantalla */
+  background-color: #f8f9fa; /* fondo gris claro */
 }
 
-/* Mejoras para el navbar */
+/* hacer el logo mas prominente */
 .navbar-brand {
   font-weight: bold;
   font-size: 1.5rem;
 }
 
-/* Estilo para las cards de productos */
+/* efectos hover para las cards de productos */
 .card {
-  transition: transform 0.2s ease-in-out;
-  border: none;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease-in-out; /* animacion suave */
+  border: none; /* quitar borde default */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* sombra sutil */
 }
 
+/* cuando el mouse pasa por encima de una card */
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateY(-5px); /* elevar la card */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* sombra mas pronunciada */
 }
 
-/* Estilo para el carrito */
+/* mejorar el tamaño de los badges del carrito */
 .badge {
   font-size: 0.9rem;
 }
 
-/* Mejoras para formularios */
+/* personalizar el focus de los inputs */
 .form-control:focus {
-  border-color: #0d6efd;
-  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  border-color: #0d6efd; /* border azul */
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25); /* glow azul */
 }
 
-/* Footer */
+/* asegurar que el footer quede abajo */
 footer {
   margin-top: auto;
 }
 
-/* Responsive adjustments */
+/* ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
   .display-4 {
-    font-size: 2rem;
+    font-size: 2rem; /* titulo mas pequeño en mobile */
   }
 
   .lead {
-    font-size: 1rem;
+    font-size: 1rem; /* subtitulo mas pequeño en mobile */
   }
 }
 ```

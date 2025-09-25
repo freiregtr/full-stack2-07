@@ -17,11 +17,18 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 
 const Navigation = () => {
   return (
+    // navbar principal con tema dark
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
+        {/* logo o nombre de la tienda */}
         <Navbar.Brand href="#home">Mi Tienda Online</Navbar.Brand>
+
+        {/* boton hamburguesa para mobile */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+        {/* menu colapsable */}
         <Navbar.Collapse id="basic-navbar-nav">
+          {/* ms-auto empuja el menu a la derecha */}
           <Nav className="ms-auto">
             <Nav.Link href="#home">Inicio</Nav.Link>
             <Nav.Link href="#products">Productos</Nav.Link>
@@ -131,7 +138,7 @@ import React from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 
 const ProductList = () => {
-  // Datos de ejemplo para los productos
+  // datos de ejemplo para los productos - normalmente vendria de una api
   const products = [
     {
       id: 1,
@@ -171,24 +178,35 @@ const ProductList = () => {
     }
   ];
 
+  // funcion que se ejecuta cuando clickean "agregar al carrito"
   const handleAddToCart = (product) => {
     console.log('Agregando al carrito:', product.name);
-    // Aqui iria la logica para agregar al carrito
+    // aqui iria la logica real para agregar al carrito
     alert(`${product.name} agregado al carrito!`);
   };
 
   return (
     <div className="my-4">
+      {/* titulo principal */}
       <h2 className="text-center mb-4">Catalogo de Productos</h2>
+
+      {/* grilla responsive de productos */}
       <Row>
         {products.map(product => (
+          // cada producto ocupa: mobile 12cols, tablet 6cols, desktop 4cols
           <Col key={product.id} sm={12} md={6} lg={4} className="mb-4">
+            {/* h-100 hace que todas las cards tengan la misma altura */}
             <Card className="h-100">
+              {/* d-flex flex-column para que el boton quede abajo siempre */}
               <Card.Body className="d-flex flex-column">
                 <Card.Title>{product.name}</Card.Title>
+
+                {/* flex-grow-1 hace que la descripcion tome el espacio disponible */}
                 <Card.Text className="flex-grow-1">
                   {product.description}
                 </Card.Text>
+
+                {/* mt-auto empuja este div hacia abajo */}
                 <div className="mt-auto">
                   <h5 className="text-primary">${product.price}</h5>
                   <Button
@@ -287,7 +305,7 @@ import React, { useState } from 'react';
 import { Card, ListGroup, Button, Badge, Row, Col } from 'react-bootstrap';
 
 const ShoppingCart = () => {
-  // Estado inicial del carrito con algunos productos de ejemplo
+  // estado inicial del carrito con algunos productos de ejemplo
   const [cartItems] = useState([
     {
       id: 1,
@@ -309,18 +327,19 @@ const ShoppingCart = () => {
     }
   ]);
 
-  // Funcion para calcular el total del carrito
+  // funcion para calcular el total del carrito
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => {
       return total + (item.price * item.quantity);
     }, 0).toFixed(2);
   };
 
-  // Funcion para contar items totales
+  // funcion para contar items totales en el carrito
   const getTotalItems = () => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
+  // maneja el click del boton "proceder al pago"
   const handleCheckout = () => {
     alert(`Total a pagar: $${calculateTotal()}`);
     console.log('Procesando compra...', cartItems);
@@ -328,22 +347,28 @@ const ShoppingCart = () => {
 
   return (
     <Card className="my-4">
+      {/* header del carrito con contador de items */}
       <Card.Header className="bg-primary text-white">
         <h4 className="mb-0">
           Carrito de Compras
+          {/* badge con numero de items */}
           <Badge bg="light" text="dark" className="ms-2">
             {getTotalItems()} items
           </Badge>
         </h4>
       </Card.Header>
+
       <Card.Body>
+        {/* si no hay items, mostrar mensaje vacio */}
         {cartItems.length === 0 ? (
           <p className="text-center text-muted">Tu carrito esta vacio</p>
         ) : (
           <>
+            {/* lista de productos en el carrito */}
             <ListGroup variant="flush">
               {cartItems.map(item => (
                 <ListGroup.Item key={item.id}>
+                  {/* align-items-center centra verticalmente */}
                   <Row className="align-items-center">
                     <Col>
                       <strong>{item.name}</strong>
@@ -352,6 +377,7 @@ const ShoppingCart = () => {
                         Cantidad: {item.quantity} × ${item.price}
                       </small>
                     </Col>
+                    {/* xs="auto" hace que esta columna tome solo el espacio necesario */}
                     <Col xs="auto">
                       <Badge bg="success" pill>
                         ${(item.price * item.quantity).toFixed(2)}
@@ -362,8 +388,10 @@ const ShoppingCart = () => {
               ))}
             </ListGroup>
 
+            {/* linea separadora */}
             <hr />
 
+            {/* seccion del total */}
             <Row className="align-items-center">
               <Col>
                 <strong>Total:</strong>
@@ -375,6 +403,7 @@ const ShoppingCart = () => {
               </Col>
             </Row>
 
+            {/* boton de checkout */}
             <Button
               variant="success"
               size="lg"
@@ -465,7 +494,7 @@ import React, { useState } from 'react';
 import { Form, Button, Card, Alert, Row, Col } from 'react-bootstrap';
 
 const RegistrationForm = () => {
-  // Estado para los datos del formulario
+  // estado para guardar los datos del formulario
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -476,19 +505,20 @@ const RegistrationForm = () => {
     agreeTerms: false
   });
 
-  // Estado para manejar errores y mensajes
+  // estados para manejar errores y mensaje de exito
   const [errors, setErrors] = useState({});
   const [showSuccess, setShowSuccess] = useState(false);
 
-  // Maneja los cambios en los inputs
+  // funcion que se ejecuta cuando el usuario escribe en cualquier campo
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
+      // si es checkbox usa checked, sino usa value
       [name]: type === 'checkbox' ? checked : value
     });
 
-    // Limpiar error cuando el usuario empiece a escribir
+    // limpiar error cuando el usuario empiece a escribir
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -497,34 +527,40 @@ const RegistrationForm = () => {
     }
   };
 
-  // Validacion del formulario
+  // funcion que valida todos los campos del formulario
   const validateForm = () => {
     const newErrors = {};
 
+    // validar nombre
     if (!formData.firstName.trim()) {
       newErrors.firstName = 'El nombre es requerido';
     }
 
+    // validar apellido
     if (!formData.lastName.trim()) {
       newErrors.lastName = 'El apellido es requerido';
     }
 
+    // validar email
     if (!formData.email.trim()) {
       newErrors.email = 'El email es requerido';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'El email no es valido';
     }
 
+    // validar contraseña
     if (!formData.password) {
       newErrors.password = 'La contraseña es requerida';
     } else if (formData.password.length < 6) {
       newErrors.password = 'La contraseña debe tener al menos 6 caracteres';
     }
 
+    // validar confirmacion de contraseña
     if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = 'Las contraseñas no coinciden';
     }
 
+    // validar checkbox de terminos
     if (!formData.agreeTerms) {
       newErrors.agreeTerms = 'Debes aceptar los terminos y condiciones';
     }
@@ -532,21 +568,22 @@ const RegistrationForm = () => {
     return newErrors;
   };
 
-  // Maneja el envio del formulario
+  // funcion que se ejecuta cuando hacen submit del form
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // evita que se recargue la pagina
 
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
+      // hay errores, mostrarlos y no continuar
       setErrors(formErrors);
       return;
     }
 
-    // Si llegamos aqui, el formulario es valido
+    // si llegamos aqui, el formulario es valido
     console.log('Datos del formulario:', formData);
     setShowSuccess(true);
 
-    // Resetear formulario
+    // resetear formulario a estado inicial
     setFormData({
       firstName: '',
       lastName: '',
@@ -558,7 +595,7 @@ const RegistrationForm = () => {
     });
     setErrors({});
 
-    // Ocultar mensaje de exito despues de 3 segundos
+    // ocultar mensaje de exito despues de 3 segundos
     setTimeout(() => {
       setShowSuccess(false);
     }, 3000);
@@ -567,8 +604,10 @@ const RegistrationForm = () => {
   return (
     <Card className="my-4">
       <Card.Body>
+        {/* titulo del formulario */}
         <h3 className="text-center mb-4">Registro de Usuario</h3>
 
+        {/* mensaje de exito - solo se muestra si showSuccess es true */}
         {showSuccess && (
           <Alert variant="success">
             ¡Registro exitoso! Bienvenido a nuestra tienda.
@@ -576,6 +615,7 @@ const RegistrationForm = () => {
         )}
 
         <Form onSubmit={handleSubmit}>
+          {/* fila con nombre y apellido - en desktop van lado a lado */}
           <Row>
             <Col md={6}>
               <Form.Group className="mb-3">
@@ -588,6 +628,7 @@ const RegistrationForm = () => {
                   placeholder="Tu nombre"
                   isInvalid={!!errors.firstName}
                 />
+                {/* mensaje de error para este campo */}
                 <Form.Control.Feedback type="invalid">
                   {errors.firstName}
                 </Form.Control.Feedback>
@@ -612,6 +653,7 @@ const RegistrationForm = () => {
             </Col>
           </Row>
 
+          {/* campo email - ocupa todo el ancho */}
           <Form.Group className="mb-3">
             <Form.Label>Email *</Form.Label>
             <Form.Control
@@ -627,6 +669,7 @@ const RegistrationForm = () => {
             </Form.Control.Feedback>
           </Form.Group>
 
+          {/* campo telefono - opcional, no tiene validacion */}
           <Form.Group className="mb-3">
             <Form.Label>Telefono</Form.Label>
             <Form.Control
@@ -638,6 +681,7 @@ const RegistrationForm = () => {
             />
           </Form.Group>
 
+          {/* fila con contraseñas - lado a lado en desktop */}
           <Row>
             <Col md={6}>
               <Form.Group className="mb-3">
@@ -674,6 +718,7 @@ const RegistrationForm = () => {
             </Col>
           </Row>
 
+          {/* checkbox para aceptar terminos */}
           <Form.Group className="mb-3">
             <Form.Check
               type="checkbox"
@@ -687,6 +732,7 @@ const RegistrationForm = () => {
             />
           </Form.Group>
 
+          {/* boton submit - w-100 hace que ocupe todo el ancho */}
           <Button
             variant="primary"
             type="submit"
@@ -697,6 +743,7 @@ const RegistrationForm = () => {
           </Button>
         </Form>
 
+        {/* texto informativo */}
         <div className="text-center mt-3">
           <small className="text-muted">
             Los campos marcados con * son obligatorios

@@ -79,16 +79,16 @@ Cuando abras http://localhost:3000, deberias ver:
 ### Comandos Disponibles
 
 ```bash
-# Iniciar desarrollo
+# iniciar servidor de desarrollo con hot reload
 npm start
 
-# Crear build de produccion
+# crear build optimizado para produccion
 npm run build
 
-# Ejecutar tests (cuando los agregues)
+# ejecutar tests unitarios (cuando los agregues)
 npm test
 
-# Exponer la configuracion de webpack (cuidado!)
+# exponer configuracion de webpack - no recomendado para principiantes
 npm run eject
 ```
 
@@ -97,16 +97,16 @@ npm run eject
 Puedes customizar la ejecucion con variables:
 
 ```bash
-# Cambiar puerto
+# cambiar puerto si 3000 esta ocupado
 PORT=3001 npm start
 
-# Abrir en navegador especifico
+# abrir en navegador especifico (firefox, chrome, etc)
 BROWSER=firefox npm start
 
-# No abrir navegador automaticamente
+# no abrir navegador automaticamente - util para servidores
 BROWSER=none npm start
 
-# Deshabilitar hot reload
+# deshabilitar hot reload si causa problemas
 FAST_REFRESH=false npm start
 ```
 
@@ -201,17 +201,17 @@ Module not found: Can't resolve './components/navbar'
 
 **Ejemplo**:
 ```jsx
-// Incorrecto
+// incorrecto - no se puede retornar multiples elementos hermanos
 return (
   <div>
     <h1>Titulo</h1>
     <p>Parrafo</p>
   </div>
-  // No se puede retornar multiples elementos
-  <div>Otro div</div>  
+  // este div causa error porque esta suelto
+  <div>Otro div</div>
 );
 
-// Correcto
+// correcto - todo envuelto en un contenedor padre
 return (
   <div>
     <div>
@@ -220,6 +220,17 @@ return (
     </div>
     <div>Otro div</div>
   </div>
+);
+
+// tambien correcto - usando fragment de react
+return (
+  <>
+    <div>
+      <h1>Titulo</h1>
+      <p>Parrafo</p>
+    </div>
+    <div>Otro div</div>
+  </>
 );
 ```
 
@@ -239,16 +250,22 @@ return (
 
 **Solucion**:
 ```jsx
-// Incorrecto
+// incorrecto - falta la prop key
 {products.map(product => (
-    // Falta key
-    <div>{product.name}</div>  
+    // react necesita key para identificar cada elemento
+    <div>{product.name}</div>
 ))}
 
-// Correcto
+// correcto - siempre agregar key unica en listas
 {products.map(product => (
-    // Con key
+    // usamos id como key porque es unico para cada producto
     <div key={product.id}>{product.name}</div>
+))}
+
+// tambien correcto - si no hay id, usar el index (menos recomendado)
+{products.map((product, index) => (
+    // solo usar index si no hay otra opcion
+    <div key={index}>{product.name}</div>
 ))}
 ```
 
@@ -270,20 +287,45 @@ return (
 
 #### 1. **Imagenes Optimizadas**
 ```jsx
-// En lugar de URLs largas, usa imagenes locales optimizadas
-<img src="/images/product1-small.webp" alt="Producto" />
+// mejor usar imagenes locales optimizadas y pequeñas
+<img
+  src="/images/product1-small.webp"
+  alt="Producto"
+  loading="lazy" // carga la imagen solo cuando sea visible
+/>
+
+// evitar imagenes pesadas o urls externas
+<img src="https://ejemplo.com/imagen-gigante-5mb.jpg" alt="Malo" />
 ```
 
 #### 2. **Lazy Loading** (Para despues)
 ```jsx
+// lazy loading - carga componentes solo cuando se necesitan
 const LazyComponent = lazy(() => import('./components/HeavyComponent'));
+
+// uso del componente lazy con suspense
+<Suspense fallback={<div>Cargando...</div>}>
+  <LazyComponent />
+</Suspense>
 ```
 
 #### 3. **Memoization** (Para despues)
 ```jsx
+// memoization - evita re-renders innecesarios
 const ExpensiveComponent = memo(({ data }) => {
-  // Componente costoso
+  // este componente solo se re-renderiza si 'data' cambia
+  return (
+    <div>
+      {/* operaciones costosas aqui */}
+      {data.map(item => <ExpensiveItem key={item.id} item={item} />)}
+    </div>
+  );
 });
+
+// tambien puedes memoizar valores calculados
+const memoizedValue = useMemo(() => {
+  return expensiveCalculation(data);
+}, [data]); // solo recalcula si data cambia
 ```
 
 ## Paso 8: Preparar para Produccion
@@ -303,11 +345,14 @@ Esto crea:
 ### Servir Build Localmente
 
 ```bash
-# Instalar servidor estatico
+# instalar servidor estatico global para probar builds
 npm install -g serve
 
-# Servir el build
+# servir la carpeta build como si fuera un servidor real
 serve -s build
+
+# alternativa: usar npx sin instalar globalmente
+npx serve -s build
 ```
 
 ### Diferencias Development vs Production
@@ -326,35 +371,46 @@ serve -s build
 ### Limpiar Cache
 
 ```bash
-# Limpiar cache de npm
+# limpiar cache de npm cuando algo anda mal
 npm clear cache --force
 
-# Reinstalar node_modules
+# reinstalar completamente las dependencias - solucion drastica
 rm -rf node_modules package-lock.json
+npm install
+
+# en windows usar rmdir en lugar de rm
+rmdir /s node_modules
+del package-lock.json
 npm install
 ```
 
 ### Verificar Dependencias
 
 ```bash
-# Ver todas las dependencias
+# ver todas las dependencias instaladas en formato arbol
 npm list
 
-# Ver dependencias outdated
+# ver que dependencias tienen versiones mas nuevas disponibles
 npm outdated
 
-# Auditar vulnerabilidades
+# revisar si hay vulnerabilidades de seguridad
 npm audit
+
+# intentar arreglar vulnerabilidades automaticamente
+npm audit fix
 ```
 
 ### Logs Detallados
 
 ```bash
-# Ejecutar con logs verbose
+# ejecutar con logs detallados - util para debugging
 npm start --verbose
 
-# Ver solo errores
+# ejecutar sin logs, solo mostrar errores criticos
 npm start --silent
+
+# ver logs de un comando especifico
+npm run build --verbose
 ```
 
 ## Proximos Pasos
