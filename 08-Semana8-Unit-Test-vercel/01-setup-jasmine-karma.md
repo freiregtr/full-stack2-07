@@ -1,5 +1,10 @@
 # Setup: Jasmine y Karma para Testing en React
 
+**Basado en documentación oficial y patrones verificados:**
+- [Karma Official Documentation](http://karma-runner.github.io/6.4/intro/installation.html)
+- [karma-webpack npm package](https://www.npmjs.com/package/karma-webpack)
+---
+
 ## Introducción
 
 ### ¿Qué es Jasmine?
@@ -28,7 +33,7 @@ describe('Calculadora', () => {
 
 **Flujo:**
 ```
-1. Escribes tests con Jasmine → Login.spec.js
+1. Escribes tests con Jasmine → Login.spec.jsx
 2. Karma ejecuta en Chrome → Muestra resultados
 ```
 
@@ -38,9 +43,16 @@ describe('Calculadora', () => {
 
 ### Paso 1: Crear proyecto React
 
+**En Git Bash (Windows Desktop):**
+
 ```bash
-cd 08-Semana8-Unit-Test-vercel
+# Ir al Desktop
+cd ~/Desktop
+
+# Crear proyecto React
 npx create-react-app login-app
+
+# Entrar al proyecto
 cd login-app
 ```
 
@@ -49,8 +61,6 @@ cd login-app
 ### Paso 2: Instalar dependencias
 
 **A) Dependencias oficiales de Karma**
-
-Según la [documentación oficial de Karma](http://karma-runner.github.io/6.4/intro/installation.html):
 
 ```bash
 npm install karma --save-dev
@@ -62,7 +72,7 @@ npm install karma-jasmine karma-chrome-launcher jasmine-core --save-dev
 Las dependencias oficiales solo funcionan con JavaScript puro. Para React (JSX), necesitas:
 
 ```bash
-npm install --save-dev karma-webpack babel-loader @testing-library/react @testing-library/jest-dom
+npm install --save-dev karma-webpack babel-loader style-loader css-loader
 ```
 
 **Resumen de lo que instalamos:**
@@ -73,10 +83,10 @@ npm install --save-dev karma-webpack babel-loader @testing-library/react @testin
 | `jasmine-core` | Framework de testing |
 | `karma-jasmine` | Conecta Jasmine con Karma |
 | `karma-chrome-launcher` | Ejecuta tests en Chrome |
-| `karma-webpack` | Procesa archivos JSX |
+| `karma-webpack` | Procesa archivos JSX con Webpack |
 | `babel-loader` | Transpila JSX a JavaScript |
-| `@testing-library/react` | Testea componentes React |
-| `@testing-library/jest-dom` | Matchers adicionales |
+| `style-loader` | Inyecta CSS en el DOM |
+| `css-loader` | Procesa imports de CSS |
 
 **¿Qué NO instalamos?**
 
@@ -88,9 +98,35 @@ Create React App ya incluye:
 
 ---
 
+## Cómo Crear Archivos y Carpetas
+### Opción 1: Git Bash
+
+```bash
+# Crear archivo vacío
+touch nombre-archivo.js
+
+# Crear carpeta
+mkdir nombre-carpeta
+
+# Abrir archivo en vs code
+code nombre-archivo.js
+```
+
+---
+
 ### Paso 3: Configurar Babel
 
-Crear archivo `.babelrc` en la raíz del proyecto:
+**En Git Bash:**
+
+```bash
+# Crear archivo .babelrc
+touch .babelrc
+
+# Abrir en VS Code para editarlo
+code .babelrc
+```
+
+**Copiar este contenido en el archivo `.babelrc`:**
 
 ```json
 {
@@ -101,13 +137,55 @@ Crear archivo `.babelrc` en la raíz del proyecto:
 }
 ```
 
+**Guardar el archivo**
+
 **¿Para qué?** Babel convierte JSX a JavaScript que los navegadores entienden.
 
 ---
 
-### Paso 4: Configurar Karma
+### Paso 4: Crear archivo de tests bundle
 
-Crear archivo `karma.conf.js` en la raíz del proyecto:
+**En Git Bash:**
+
+```bash
+# Crear archivo tests.bundle.js
+touch tests.bundle.js
+
+# Abrir en VS Code
+code tests.bundle.js
+```
+
+**Copiar este contenido en `tests.bundle.js`:**
+
+```javascript
+// Este archivo carga todos los tests automáticamente
+var context = require.context('./src', true, /\.spec\.jsx?$/);
+context.keys().forEach(context);
+module.exports = context;
+```
+
+**Guardar el archivo**
+
+**¿Para que?**
+
+Este patrón es la forma recomendada de cargar tests con Karma + Webpack. En lugar de listar manualmente cada archivo de test en karma.conf.js, este archivo usa `require.context` de Webpack para:
+
+1. Buscar automáticamente todos los archivos `.spec.js` y `.spec.jsx` en la carpeta `src/`
+2. Cargarlos dinámicamente
+3. Evitar conflictos con otros archivos (como `App.test.js` de Jest)
+
+---
+
+### Paso 5: Configurar Karma
+
+**En Git Bash:**
+
+```bash
+# Crear archivo karma.conf.js
+touch karma.conf.js
+```
+
+**Copiar este contenido en `karma.conf.js`:**
 
 ```javascript
 module.exports = function(config) {
@@ -115,15 +193,12 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     files: [
-      'src/**/*.spec.js',
-      'src/**/*.spec.jsx',
-      'src/**/*.js',
-      'src/**/*.jsx'
+      'tests.bundle.js'
     ],
 
+    // Solo procesa tests.bundle.js con webpack
     preprocessors: {
-      'src/**/*.js': ['webpack'],
-      'src/**/*.jsx': ['webpack']
+      'tests.bundle.js': ['webpack']
     },
 
     webpack: {
@@ -154,9 +229,11 @@ module.exports = function(config) {
 };
 ```
 
+**Guardar el archivo**
+
 ---
 
-### Paso 5: Agregar scripts en package.json
+### Paso 6: Agregar scripts en package.json
 
 Abrir el archivo `package.json` y buscar la sección `"scripts"`.
 
@@ -196,7 +273,20 @@ Agregar estas DOS líneas **después de** `"test": "react-scripts test",`:
 
 Este test verifica que Jasmine y Karma están funcionando correctamente. No testea código real de la aplicación, solo confirma que el entorno de testing está bien configurado haciendo dos pruebas simples: una verificación básica (true es true) y una operación matemática (2 + 2 = 4).
 
-Crear carpeta y archivo: `src/__tests__/example.spec.js`
+**En Git Bash:**
+
+```bash
+# Crear carpeta __tests__
+mkdir src/__tests__
+
+# Crear archivo example.spec.js
+touch src/__tests__/example.spec.js
+
+# Abrir en VS Code
+code src/__tests__/example.spec.js
+```
+
+**Copiar este contenido en `src/__tests__/example.spec.js`:**
 
 ```javascript
 describe('Test básico de Jasmine', () => {
@@ -210,6 +300,8 @@ describe('Test básico de Jasmine', () => {
   });
 });
 ```
+
+**Guardar el archivo** (Ctrl+S).
 
 **Explicación de las funciones:**
 
@@ -243,144 +335,20 @@ login-app/
 ├── node_modules/
 ├── public/
 ├── src/
-│   ├── components/           (crearemos después)
+│   ├── components/  
 │   │   ├── Login.jsx
 │   │   └── Login.css
 │   ├── __tests__/
-│   │   └── example.spec.js   (✓ creado)
+│   │   └── example.spec.js 
 │   ├── App.jsx
 │   └── index.jsx
-├── .babelrc                  (✓ creado)
-├── karma.conf.js             (✓ creado)
-├── package.json              (✓ modificado)
+├── .babelrc           
+├── tests.bundle.js    
+├── karma.conf.js      
+├── package.json              
 └── README.md
 ```
 
----
-
-## Comandos Útiles
-
-```bash
-# Iniciar app React
-npm start
-
-# Ejecutar tests (watch mode)
-npm run test:karma
-
-# Ejecutar tests una vez
-npm run test:karma-ci
-
-# Ver versiones instaladas
-npm list karma jasmine-core
-```
+**Nota**: El archivo `tests.bundle.js` es crítico. Sin él, Karma no encontrará tus tests.
 
 ---
-
-## Troubleshooting
-
-### Error: "Chrome not found"
-
-```bash
-# Ubuntu/Debian
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i google-chrome-stable_current_amd64.deb
-```
-
-### Error: "Module not found"
-
-```bash
-rm -rf node_modules package-lock.json
-npm install
-```
-
-### Error: "Karma timeout"
-
-Editar `karma.conf.js` y agregar dentro de `config.set({...})`:
-
-```javascript
-browserNoActivityTimeout: 60000,
-captureTimeout: 60000
-```
-
----
-
-## Apéndice: Conceptos Técnicos
-
-### ¿Qué es Babel?
-
-**Babel** es un transpilador. Convierte código moderno (JSX, ES6+) a JavaScript compatible.
-
-**Ejemplo:**
-
-```javascript
-// Lo que escribes (JSX):
-const elemento = <div>Hola Mundo</div>;
-
-// Lo que el navegador ejecuta (JavaScript):
-const elemento = React.createElement('div', null, 'Hola Mundo');
-```
-
-### ¿Por qué necesitamos Babel?
-
-Los navegadores no entienden JSX porque no es parte del lenguaje JavaScript oficial. JSX fue creado por React.
-
-**Flujo:**
-```
-Tu código JSX → Babel transpila → JavaScript puro → Chrome ejecuta → Tests corren
-```
-
-### ¿Qué son los presets de Babel?
-
-Los presets son conjuntos de plugins:
-
-- `@babel/preset-env`: Transpila JavaScript moderno (ES6+) a ES5
-- `@babel/preset-react`: Transpila JSX a JavaScript
-
-### package.json resultante
-
-Después de los pasos anteriores, tu `package.json` debe verse así:
-
-```json
-{
-  "name": "login-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"
-  },
-  "devDependencies": {
-    "karma": "^6.4.2",
-    "jasmine-core": "^5.1.0",
-    "karma-jasmine": "^5.1.0",
-    "karma-chrome-launcher": "^3.2.0",
-    "karma-webpack": "^5.0.0",
-    "babel-loader": "^9.1.0",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/jest-dom": "^6.1.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test:karma": "karma start",
-    "test:karma-ci": "karma start --single-run",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
----
-
-## Resumen
-
-En este documento aprendiste:
-
-1. Qué es Jasmine y Karma
-2. Por qué van juntos
-3. Cómo crear un proyecto React con testing
-4. Cómo instalar y configurar todo
-5. Cómo verificar que funciona
-
-**Siguiente paso:** En `02-componente-login.md` crearemos el componente de Login responsivo estilo Google.

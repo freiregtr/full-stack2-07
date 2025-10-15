@@ -13,10 +13,16 @@ En este documento crearemos un componente de Login moderno y responsivo inspirad
 
 Antes de empezar, crea una carpeta temporal fuera del proyecto React para probar el HTML puro:
 
+**En Git Bash:**
+
 ```bash
-# en Gibash, crear carpeta temporal para HTML puro en escritorio en otra terminal
-cd $HOME/Desktop
+# Ir al Desktop
+cd ~/Desktop
+
+# Crear carpeta para HTML puro
 mkdir login-html-puro
+
+# Entrar a la carpeta
 cd login-html-puro
 ```
 
@@ -26,14 +32,6 @@ login-html-puro/
 ├── login.html  (Paso 1)
 └── login.css   (Paso 2)
 ```
-
-**Cómo visualizarlo en el navegador:**
-
-Después de crear los archivos, podrás abrirlos de 3 formas:
-
-1. **Doble clic (Windows)**: Haz doble clic en `login.html`
-2. **Desde navegador**: Abre Chrome/Firefox → `Ctrl + O` → Selecciona `login.html`
-3. **Live Server (VSCode)**: Click derecho en `login.html` → "Open with Live Server"
 
 ---
 
@@ -121,7 +119,7 @@ Crear archivo `login.html` con el siguiente contenido:
 </html>
 ```
 
-### Paso 2: Crear los estilos CSS (login.css)
+### Paso 2: Crear los estilos CSS
 
 ```css
 /* Reset y variables */
@@ -429,9 +427,22 @@ Ahora vamos a transformar este HTML en un componente React funcional con estados
 
 ### Paso 1: Crear el componente Login.jsx
 
-Crear archivo: `src/components/Login.jsx`
+**En Git Bash (dentro de login-app/):**
 
-**Nota:** Por ahora NO importaremos el CSS, lo haremos en el Paso 3 después de crearlo.
+```bash
+# Crear carpeta components
+mkdir src/components
+
+# Crear archivo Login.jsx
+touch src/components/Login.jsx
+
+# Abrir en VS Code
+code src/components/Login.jsx
+```
+
+**Nota:** Por ahora no importaremos el CSS, lo haremos en el Paso 3 después de crearlo
+
+**Copiar este contenido en `src/components/Login.jsx`:**
 
 ```javascript
 import React, { useState } from 'react';
@@ -632,7 +643,17 @@ export default Login;
 
 ### Paso 2: Crear los estilos Login.css
 
-Crear archivo: `src/components/Login.css` con el siguiente contenido:
+**En Git Bash:**
+
+```bash
+# Crear archivo Login.css
+touch src/components/Login.css
+
+# Abrir en VS Code
+code src/components/Login.css
+```
+
+**Copiar este contenido en `src/components/Login.css`:**
 
 ```css
 /* Reset y variables */
@@ -923,19 +944,22 @@ Ahora que ya creaste `Login.css`, vuelve a abrir `src/components/Login.jsx` y ag
 
 ```javascript
 import React, { useState } from 'react';
-import './Login.css';  // ← AGREGAR ESTA LÍNEA
+// agregar esta linea
+import './Login.css';
 
 function Login() {
-  // ... resto del código
+  // resto del código
 ```
 
-### Paso 4: Integrar el componente en App.jsx
+### Paso 4: Integrar el componente en App.js
 
-Editar `src/App.jsx`:
+**Nota importante**: Create React App crea `App.js` (no `App.jsx`). Si prefieres usar `.jsx`, puedes renombrar el archivo, pero no es necesario.
+
+Editar `src/App.js`:
 
 ```javascript
 import React from 'react';
-import Login from './components/Login.jsx';
+import Login from './components/Login';
 import './App.css';
 
 function App() {
@@ -960,59 +984,6 @@ Editar `src/App.css` para limpiar estilos por defecto:
   align-items: center;
   justify-content: center;
 }
-```
-
----
-
-## Diferencias HTML vs React (JSX)
-
-### 1. Atributos de clase
-```html
-<!-- HTML -->
-<div class="login-card">
-
-<!-- React/JSX -->
-<div className="login-card">
-```
-
-### 2. Labels con for
-```html
-<!-- HTML -->
-<label for="email">
-
-<!-- React/JSX -->
-<label htmlFor="email">
-```
-
-### 3. Atributos inline
-```html
-<!-- HTML -->
-<div style="display: none;">
-
-<!-- React/JSX -->
-<div style={{ display: 'none' }}>
-```
-
-### 4. Eventos
-```html
-<!-- HTML -->
-<button onclick="handleClick()">
-
-<!-- React/JSX -->
-<button onClick={handleClick}>
-```
-
-### 5. Valores controlados
-```html
-<!-- HTML (no controlado) -->
-<input type="email" id="email">
-
-<!-- React (controlado) -->
-<input
-  type="email"
-  value={email}
-  onChange={handleEmailChange}
-/>
 ```
 
 ---
@@ -1095,13 +1066,14 @@ Abre el navegador en `http://localhost:3000` y verás el login funcionando.
 
 En este documento aprendiste:
 
-1. ✓ Crear un login con HTML + CSS puro (estructura y diseño)
-2. ✓ Convertir HTML a React JSX
-3. ✓ Usar useState para manejar estados
-4. ✓ Implementar validaciones en tiempo real
-5. ✓ Mostrar mensajes de error dinámicamente
-6. ✓ Simular flujo de autenticación (loading/success)
-7. ✓ Diferencias entre HTML y JSX
-8. ✓ Diseño responsivo (mobile-first)
+1. Crear un login con HTML + CSS puro (estructura y diseño)
+2. Convertir HTML a React JSX
+3. Usar useState para manejar estados
+4. Implementar validaciones en tiempo real
+5. Mostrar mensajes de error dinámicamente
+6. Simular flujo de autenticación (loading/success)
+7. Diferencias entre HTML y JSX
+8. Diseño responsivo (mobile-first)
 
-**Siguiente paso:** En el documento `03-pruebas-unitarias.md` escribiremos tests con Jasmine y Karma para validar todas estas funcionalidades.
+---
+
