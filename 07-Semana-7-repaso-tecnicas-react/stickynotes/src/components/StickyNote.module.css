@@ -1,0 +1,76 @@
+/* estilos de la nota tipo post-it */
+.stickyNote {
+  /* usamos CSS Variable para el color dinamico */
+  background: var(--note-color, #FFE17B);
+  padding: 20px;
+  border-radius: 2px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  min-height: 180px;
+}
+
+/* efecto hover: levanta y rota la nota */
+.stickyNote:hover {
+  transform: translateY(-4px) rotate(1deg);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* organiza categoria y botones en linea */
+.stickyNoteHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+/* formato de la categoria */
+.category {
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(0,0,0,0.5);
+  letter-spacing: 0.5px;
+}
+
+/* organiza los botones en linea */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* botones circulares */
+.btnIcon {
+  background: rgba(255,255,255,0.7);
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+/* efecto hover en botones */
+.btnIcon:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+/* titulo de la nota */
+.stickyNote h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+/* contenido de la nota */
+.stickyNote p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}

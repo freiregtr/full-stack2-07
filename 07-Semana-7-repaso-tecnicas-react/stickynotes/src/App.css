@@ -1,0 +1,433 @@
+/* ========================================
+   ESTILOS GLOBALES
+   estos estilos son globales porque afectan
+   el layout general de la app, no componentes
+   ======================================== */
+
+/* reset para quitar margenes por defecto */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* fuente de toda la app */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* fondo degradado de la app */
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* barra superior blanca */
+.app-header {
+  background: white;
+  padding: 20px 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* titulo en el header */
+.app-header h1 {
+  color: #333;
+  font-size: 32px;
+}
+
+/* boton limpiar todo */
+.btn-clear {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.btn-clear:hover {
+  background: #c82333;
+}
+
+/* centra el contenido */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* grid para organizar las notas en columnas */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+/* mensaje cuando no hay notas */
+.empty-state {
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  margin-top: 40px;
+}
+
+/* boton flotante para abrir modal */
+.btn-add-note {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #667eea;
+  color: white;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: all 0.3s;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.btn-add-note:hover {
+  background: #5568d3;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.btn-add-note:active {
+  transform: scale(0.95);
+}
+
+/* ========================================
+   NAVEGACION Y RUTAS
+   estilos para react router dom
+   ======================================== */
+
+/* titulo clickeable que lleva al home */
+.app-title {
+  text-decoration: none;
+  color: inherit;
+}
+
+.app-title:hover h1 {
+  color: #667eea;
+  transition: color 0.2s;
+}
+
+/* links de navegacion */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #666;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+/* boton volver atras */
+.btn-back {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s;
+  margin-bottom: 20px;
+}
+
+.btn-back:hover {
+  background: #5568d3;
+}
+
+/* ========================================
+   PAGINAS
+   estilos para las paginas de rutas
+   ======================================== */
+
+/* header de cada pagina con titulo y controles */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.page-header h2 {
+  color: white;
+  font-size: 28px;
+}
+
+/* nota no encontrada (404) */
+.note-not-found {
+  text-align: center;
+  color: white;
+  padding: 60px 20px;
+}
+
+.note-not-found h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+/* detalle de la nota */
+.note-detail {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.note-detail-card {
+  background: var(--note-color, white);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.note-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.note-detail-card .category {
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.favorite-badge {
+  background: #ffd700;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.note-detail-card h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.note-content {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.note-meta {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 20px;
+}
+
+.note-meta small {
+  color: #666;
+  font-size: 14px;
+}
+
+/* ========================================
+   BUSQUEDA Y FILTROS
+   estilos para searchbar y filterbar
+   ======================================== */
+
+/* contenedor de controles (search + filters) */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+/* barra de busqueda */
+.search-bar {
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid white;
+  border-radius: 8px;
+  font-size: 16px;
+  background: rgba(255,255,255,0.9);
+  transition: all 0.2s;
+}
+
+.search-input:focus {
+  outline: none;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+/* barra de filtros por categoria */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: var(--filter-color, #F5F5F5);
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.filter-btn.active {
+  border: 2px solid white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-weight: 700;
+}
+
+.filter-info {
+  color: white;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+/* ========================================
+   RESPONSIVE
+   ajustes para tablets y moviles
+   ======================================== */
+
+/* tablets */
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .app-header h1 {
+    font-size: 24px;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .notes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .note-detail-card {
+    padding: 30px 20px;
+  }
+
+  .note-detail-card h1 {
+    font-size: 28px;
+  }
+
+  .note-content {
+    font-size: 16px;
+  }
+}
+
+/* moviles */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 16px;
+  }
+
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-add-note {
+    width: 56px;
+    height: 56px;
+    bottom: 24px;
+    right: 24px;
+    font-size: 28px;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-buttons {
+    width: 100%;
+  }
+
+  .filter-btn {
+    flex: 1;
+    text-align: center;
+    min-width: 70px;
+  }
+
+  .note-detail-card h1 {
+    font-size: 24px;
+  }
+
+  .note-content {
+    font-size: 15px;
+  }
+}
