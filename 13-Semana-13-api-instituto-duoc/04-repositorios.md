@@ -347,3 +347,320 @@ Carrera{id=1, nombre='Ingenieria en Informatica', cantidadMaterias=50, cantidadA
 ```
 
 el `id=1` confirma que la carrera se guardo correctamente en la base de datos y JPA le asigno un id automaticamente.
+
+## 7. Crear PersonaRepository
+
+ahora que nuestra api funciona de forma exitosa con las pruebas del CommandLineRunner, vamos a crear un nuevo repositorio. esta vez crearemos el de Persona para manejar la herencia.
+
+dentro del package repositorios, crear una nueva interfaz llamada PersonaRepository.
+
+click derecho en el package repositorios > New > Java Class > seleccionar Interface
+
+![Crear PersonaRepository](img/04/persona_repository.png)
+
+*crear interfaz PersonaRepository*
+
+como en el repository anterior, vamos a usar CrudRepository. como vimos, debemos pasarle dos parametros, la entidad Persona y el id, que es de tipo Integer.
+
+por otro lado, debemos implementar una anotacion llamada `@NoRepositoryBean`, ya que como sabemos, la clase abstracta no puede ser instanciada, ergo, no se va a crear un bean de esto.
+
+```java
+package com.duocuc.instituto.instituto.repositorios;
+
+import com.duocuc.instituto.instituto.modelo.entidades.Persona;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.NoRepositoryBean;
+
+@NoRepositoryBean
+public interface PersonaRepository extends CrudRepository<Persona, Integer> {
+}
+```
+
+## 8. Crear AlumnoRepository
+
+ahora hacemos lo mismo para Alumno, creamos un repositorio para alumno.
+
+click derecho en el package repositorios > New > Java Class > seleccionar Interface
+
+![Crear AlumnoRepository](img/04/alumno_repository.png)
+
+*crear interfaz AlumnoRepository*
+
+como Alumno hereda de Persona, AlumnoRepository extiende de PersonaRepository para aprovechar la herencia.
+
+```java
+package com.duocuc.instituto.instituto.repositorios;
+
+import org.springframework.stereotype.Repository;
+
+@Repository("repositorioAlumnos")
+public interface AlumnoRepository extends PersonaRepository {
+}
+```
+
+### Si el puerto 8080 esta ocupado
+
+antes de ejecutar, si te da un error que el puerto este ocupado, puedes ir a ver si el puerto 8080 esta ocupado. para eso, abrimos powershell y escribimos:
+
+```powershell
+netstat -ano | findstr :8080
+```
+
+![Error puerto 8080](img/04/8080_error.png)
+
+*verificar si el puerto 8080 esta ocupado*
+
+una vez encuentres el error, puedes encontrar el numero PID, en mi caso 17640 en la imagen y matarlo con:
+
+```powershell
+taskkill /PID 17640 /F
+```
+
+![Matar proceso](img/04/kill_proccess.png)
+
+*matar el proceso que ocupa el puerto*
+
+### Opcional: Ver los beans creados
+
+ahora que tenemos los repositorios de Alumno y Persona, podemos ver los beans que Spring crea automaticamente. los beans son objetos gestionados por el contenedor de Spring que se instancian, configuran e inyectan automaticamente donde se necesiten.
+
+si quieres profundizar mas sobre beans, puedes consultar la documentacion oficial de Spring: https://docs.spring.io/spring-framework/reference/core/beans/java/bean-annotation.html
+
+para hacer esto, tenemos que comentar la creacion del objeto Carrera en CarreraComandos, clase para probar y testear nuestros objetos.
+
+![Comentar objeto Carrera](img/04/comment_carrera_object.png)
+
+*comentar la creacion del objeto Carrera*
+
+luego en nuestro archivo de ejecucion o entry point, vamos a obtener el contexto de la aplicacion que retorna `SpringApplication.run()`. este contexto tiene el metodo `getBeanDefinitionNames()` que nos devuelve los nombres de todos los beans.
+
+![Obtener bean names](img/04/bean_names_get.png)
+
+*obtener el contexto de la aplicacion*
+
+para obtener los datos, tenemos que obtenerlos y pasarselos a un Array de tipo String primero.
+
+![Array de beans](img/04/string_beans.png)
+
+*guardar los nombres de beans en un array de String*
+
+una vez teniendo el array de beans, lo recorremos y los imprimimos en consola.
+
+![Recorrer array de beans](img/04/recorrer_array_beans.png)
+
+*recorrer e imprimir los beans*
+
+una vez solucionado el problema de 8080 si te pasa a ti, podemos correr la aplicacion y ver que cargan varios archivos, entre ellos beans. entonces con ctrl + f podemos ir a buscar si nuestro repositorioAlumnos fue creado. si todo sale bien, deberias encontrar el bean recien creado. no solo puedes buscar repositorioAlumnos, tambien puedes buscar carreraRepository.
+
+![Validar repositorio creado](img/04/validar_repo_creado.png)
+
+*buscar el bean repositorioAlumnos en la consola*
+
+## 9. Crear AlumnoDAO
+
+una vez validado la forma de poder ver creacion de beans, vamos a crear el servicio para nuestro repositorio alumnos. vamos a crear la interface AlumnoDAO.
+
+![Crear AlumnoDAO](img/04/crear_alumnodao.png)
+
+*crear interface AlumnoDAO en el package contratos*
+
+para no tener que hacer todo de nuevo, vamos a tomar los metodos que ya definimos en nuestra clase CarreraDAO y pegarlos en AlumnoDAO. eso si, cambiando las referencias a objetos como Persona, etc, ya que trabajaremos con la clase padre.
+
+![Modificar AlumnoDAO](img/04/mod_alumnodao1.png)
+
+*copiar metodos de CarreraDAO y cambiar referencias a Persona*
+
+```java
+package com.duocuc.instituto.instituto.servicios.contratos;
+
+import com.duocuc.instituto.instituto.modelo.entidades.Carrera;
+import com.duocuc.instituto.instituto.modelo.entidades.Persona;
+
+import java.util.Optional;
+
+public interface AlumnoDAO {
+
+    Optional<Persona> findById(Integer id);
+
+    Carrera save(Persona persona);
+
+    Iterable<Persona> findAll();
+
+    void deleteById(Integer id);
+}
+```
+
+
+## 10. Crear AlumnoDAOImpl
+
+ahora tenemos que crear la clase de implementacion. para eso, vamos a crear la clase AlumnoDAOImpl, implementamos la interface AlumnoDAO y este ultimo nos obliga a implementar los metodos del contrato.
+
+![Implementar AlumnoDAO](img/04/impl_alumnodao.png)
+
+*crear clase AlumnoDAOImpl e implementar AlumnoDAO*
+
+decoramos la clase con @Service para que Spring la reconozca como un servicio. ademas debemos inyectar la dependencia de PersonaRepository con @Autowired.
+
+aca va a haber un problema, porque al tener multiples repositorios que extienden de PersonaRepository (como AlumnoRepository), Spring no sabe cual bean inyectar. para resolver esta ambiguedad, usaremos el decorador @Qualifier y le pasaremos el nombre del bean que corresponde, en este caso "repositorioAlumnos" que definimos en AlumnoRepository.
+
+![Agregar Qualifier](img/04/add_qualifier.png)
+
+*agregar @Service, @Autowired y @Qualifier a la clase*
+
+@Qualifier recibe como parametro el nombre del bean que definimos con @Repository("repositorioAlumnos") en AlumnoRepository. asi Spring sabe exactamente cual implementacion inyectar.
+
+### Implementar los metodos
+
+ahora empezamos a modificar los metodos de la implementacion. empezamos con findById que simplemente llama al repositorio.
+
+pero si pasamos a save, tendremos un problema. en la interface AlumnoDAO definimos save como que retorna Carrera, y debe ser Persona.
+
+![Error en save](img/04/error_save_AlumnoImpl.png)
+
+*el metodo save retorna Carrera pero deberia retornar Persona*
+
+nos devolvemos a AlumnoDAO y cambiamos Carrera por Persona en el metodo save. una vez hecho esto, el IDE nos acusara un problema con la actualizacion en otras clases, por lo que le damos click en "Update" para actualizar las implementaciones.
+
+![Actualizar AlumnoDAO](img/04/update_alumnodao.png)
+
+*actualizar las implementaciones para reflejar el cambio de signature*
+
+una vez listo esto, terminamos de implementar los metodos de la implementacion. cada metodo llama al metodo correspondiente del repositorio. ademas agregamos las anotaciones @Transactional a cada metodo.
+
+![Agregar Transactional](img/04/add_transactional_impl.png)
+
+*agregar @Transactional a los metodos, importar de org.springframework.transaction.annotation*
+
+recuerda seleccionar @Transactional de `org.springframework.transaction.annotation` y no de `jakarta.transaction`.
+
+recuerda solo agregar `@Transactional(readOnly = true)` a findById y findAll porque son metodos que solo leen datos y no modifican la base de datos, lo que permite optimizaciones de rendimiento.
+
+este es el codigo final:
+
+```java
+package com.duocuc.instituto.instituto.servicios.implementaciones;
+
+import com.duocuc.instituto.instituto.modelo.entidades.Persona;
+import com.duocuc.instituto.instituto.repositorios.PersonaRepository;
+import com.duocuc.instituto.instituto.servicios.contratos.AlumnoDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
+@Service
+public class AlumnoDAOImpl implements AlumnoDAO {
+
+
+    // agregar repositorio
+    @Autowired
+    @Qualifier("repositorioAlumnos")
+    private PersonaRepository repository;
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Persona> findById(Integer id) {
+
+        return repository.findById(id);
+    }
+
+    @Transactional
+    @Override
+    public Persona save(Persona persona) {
+
+        return repository.save(persona);
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public Iterable<Persona> findAll() {
+
+        return repository.findAll();
+    }
+    
+    @Transactional
+    @Override
+    public void deleteById(Integer id) {
+        repository.deleteById(id);
+    }
+}
+```
+
+## 11. Probar AlumnoDAOImpl
+
+para no crear un archivo nuevo de comandos, vamos a crear un metodo directo en el main y probar nuestra implementacion. para ello, vamos a comentar el foreach que usamos para buscar los beans generados.
+
+una vez listo, vamos a crear un metodo publico que devuelva el objeto CommandLineRunner pero de tipo lambda. para esto, debemos decorarlo con la anotacion @Bean.
+
+instanciamos a Alumno pero tambien Direccion, ya que Persona lleva implicito Direccion (lo lleva embebido):
+
+```java
+// generamos un metodo persona pero de tipo alumno
+Direccion direccion = new Direccion("calle1", "1521", "3520225", "30", "20", "Santiago");
+Persona alumno = new Alumno(null, "Damian", "Perez", "156624578", direccion);
+```
+
+para poder hacer funcionar estos metodos debemos inyectar la dependencia de AlumnoDAO:
+
+```java
+@Autowired
+private AlumnoDAO servicio;
+```
+
+recuerda que con @Autowired inyectamos las dependencias, en este caso el DAO.
+
+ahora que esta listo podemos guardarlo ya que hemos inyectado dependencias con @Autowired y el servicio esta listo:
+
+```java
+// una vez inyectado el servicio, guardamos
+Persona save = servicio.save(alumno);
+```
+
+![Entry point con AlumnoDAO](img/04/entrypoint_daoalumno.png)
+
+*probar AlumnoDAOImpl desde el entry point*
+
+este es el codigo final:
+
+```java
+@SpringBootApplication
+public class InstitutoApplication {
+
+    @Autowired
+    private AlumnoDAO servicio;
+
+    public static void main(String[] args) {
+        String[] beanDefinitionNames = SpringApplication.run(InstitutoApplication.class, args).getBeanDefinitionNames();
+
+        // ahora vamos a imprimir los beans provenientes de getBeanDefinitionNames()
+        /*for(String str : beanDefinitionNames){
+            // imprimir beans
+            System.out.println(str);
+        }*/
+    }
+
+    // bean de CommandLineRunner
+    @Bean
+    public CommandLineRunner runner(){
+        return args -> {
+
+            // generamos un metodo persona pero de tipo alumno
+            Direccion direccion = new Direccion("calle1", "1521", "3520225", "30", "20", "Santiago");
+            Persona alumno = new Alumno(null, "Damian", "Perez", "156624578", direccion);
+
+            // una vez inyectado el servicio, guardamos
+            Persona save = servicio.save(alumno);
+
+        };
+    }
+
+}
+```
+
+si todo sale bien, vas a poder ver la insercion dos veces, una en Persona y otra en Alumno. eso es precisamente por el tipo de estrategia que elegimos a la hora de crear nuestras tablas (JOINED).
+
+![Insert Persona y Alumno](img/04/insert_persona_alumno.png)
+
+*hibernate ejecuta dos inserts: uno en personas y otro en alumnos*
